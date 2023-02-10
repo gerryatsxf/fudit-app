@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import classes from './PasswordField.module.scss'
 import eyeIcon from '../../assets/eye-solid.svg'
 import eyeSlashIcon from '../../assets/eye-slash-solid.svg'
-
+import Eye from '../Icon/Eye'
+import EyeSlash from '../Icon/EyeSlash'
 interface PasswordFieldProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -25,17 +26,16 @@ const PasswordField: React.FC<PasswordFieldProps> = ({ value, onChange }) => {
 
   function getEyeSlash(){
     return (
-      <span>
-          <img src={eyeSlashIcon} className={classes.icon} alt='User icon'/>
-      </span>
+      <EyeSlash></EyeSlash>
     )
   }
 
   function getEye(){
     return (
-      <span>
-          <img src={eyeIcon} className={classes.icon} alt='User icon'/>
-      </span>
+      <Eye></Eye>
+      // <span>
+      //     <img src={eyeIcon} className={classes.icon} alt='User icon'/>
+      // </span>
     )
   }
   
