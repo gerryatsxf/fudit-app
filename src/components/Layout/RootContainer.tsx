@@ -1,11 +1,19 @@
-import React from "react"
+import React, { Fragment } from "react"
 import classes from './RootContainer.module.scss'
-import Router from "../UI/Router"
+import { BrowserRouter as Router, Routes , Route, Link } from 'react-router-dom';
+import UserAuthContainer from "../UI/UserAuthContainer";
 
 const RootContainer = (props: any) => {
     return (
         <div className={classes.rootContainer}>
-            <Router></Router>
+            <Router>
+                <Fragment>
+                    <Routes>
+                        <Route path='/' element={<UserAuthContainer/>}/>
+                        <Route path='/register' element={<UserAuthContainer/>}/>
+                    </Routes >
+                </Fragment>
+            </Router>
         </div>
     )
 }

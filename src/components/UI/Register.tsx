@@ -1,24 +1,24 @@
-import React from 'react'
-import classes from './Login.module.scss'
+import React, { useState } from 'react'
+import classes from './Register.module.scss'
 import PasswordField from './PasswordField';
 import EmailField from './EmailField';
 import { Link } from 'react-router-dom';
 
-const Login: React.FC<any> = ({ email, password, onRegister,  setEmail, setPassword, emailError, setEmailError, isValidEmail }) => {
-
+const Register: React.FC<any> = ({ email, password, onLogin, setEmail, setPassword, emailError, setEmailError, isValidEmail}) => {
+  
   function onSubmit(email: string, password: string){
     console.log(email, password)
   }
-
+  
   function handleSubmit(event: any) {
     event.preventDefault();
     onSubmit(email, password);
   }
   
   return (
-    <form className={classes.login} onSubmit={handleSubmit}>
+    <form className={classes.register} onSubmit={handleSubmit}>
       <h2>Hi, stranger...</h2>
-      <p>login pls</p>
+      <p>register pls</p>
       <EmailField
         value={email}
         onChange={(event) => {
@@ -36,17 +36,14 @@ const Login: React.FC<any> = ({ email, password, onRegister,  setEmail, setPassw
           setPassword(event.target.value);
         }}
       ></PasswordField>
-      <input type="submit" value="Login" />
+      <input type="submit" value="Register" />
       <div className={classes.links}>
-        <Link to='/forgot-password'>
-          Forgot password
-        </Link>
-        <Link to='/register' onClick={() => onRegister({ email, password })}>
-          Register
+        <Link to='/' onClick={() => onLogin({ email, password })}>
+          Login
         </Link>
       </div>
     </form>
   )
 }
 
-export default Login
+export default Register
