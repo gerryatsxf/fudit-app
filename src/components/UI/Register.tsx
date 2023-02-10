@@ -4,7 +4,7 @@ import PasswordField from './PasswordField';
 import EmailField from './EmailField';
 import { Link } from 'react-router-dom';
 
-const Register: React.FC<any> = ({ email, password, onLogin, setEmail, setPassword, emailError, setEmailError, isValidEmail}) => {
+const Register: React.FC<any> = ({ email, password, onLogin, setEmail, setPassword, emailError, setEmailError, isValidEmail, isEmptyEmail}) => {
   
   function onSubmit(email: string, password: string){
     console.log(email, password)
@@ -28,6 +28,7 @@ const Register: React.FC<any> = ({ email, password, onLogin, setEmail, setPasswo
         error={emailError}
         setError={setEmailError}
         isValid={isValidEmail}
+        isEmpty={isEmptyEmail}
       ></EmailField>
       <PasswordField
         value={password}

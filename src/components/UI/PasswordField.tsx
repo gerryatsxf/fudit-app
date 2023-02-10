@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import classes from './PasswordField.module.scss'
+import eyeIcon from '../../assets/eye-solid.svg'
+import eyeSlashIcon from '../../assets/eye-slash-solid.svg'
 
 interface PasswordFieldProps {
   value: string;
@@ -9,16 +11,32 @@ interface PasswordFieldProps {
 const PasswordField: React.FC<PasswordFieldProps> = ({ value, onChange }) => {
     
   const [type, setType] = useState("password");
-  const [text, setText] = useState("Show");
+  const [eyeSlash, setEyeSlash] = useState("Show");
   
   function handleMouseDown() {
     setType("text");
-    setText("Hide");
+    setEyeSlash("Hide");
   }
   
   function handleMouseUp() {
     setType("password");
-    setText("Show");
+    setEyeSlash("Show");
+  }
+
+  function getEyeSlash(){
+    return (
+      <span>
+          <img src={eyeSlashIcon} className={classes.icon} alt='User icon'/>
+      </span>
+    )
+  }
+
+  function getEye(){
+    return (
+      <span>
+          <img src={eyeIcon} className={classes.icon} alt='User icon'/>
+      </span>
+    )
   }
   
   return (
@@ -35,7 +53,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({ value, onChange }) => {
         type="button"         
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}>
-        {text} 
+        { eyeSlash == 'Hide' ? getEye() : getEyeSlash() }
       </button>
     </div>
   );

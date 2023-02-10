@@ -11,6 +11,7 @@ const RootContainer = (props: any) => {
                     <Routes>
                         <Route path='/' element={<UserAuthContainer/>}/>
                         <Route path='/register' element={<UserAuthContainer/>}/>
+                        <Route path='/forgot-password' element={<UserAuthContainer/>}/>
                     </Routes >
                 </Fragment>
             </Router>

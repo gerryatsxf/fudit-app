@@ -7,9 +7,10 @@ interface EmailFieldProps {
     error: string;
     setError: any;
     isValid: boolean;
+    isEmpty: boolean;
 }
 
-const EmailField: React.FC<EmailFieldProps> = ({ value, onChange, error, setError, isValid }) => {
+const EmailField: React.FC<EmailFieldProps> = ({ value, onChange, error, setError, isValid, isEmpty }) => {
     return (
         <div className={classes.emailContainer}>
             <input
@@ -18,8 +19,9 @@ const EmailField: React.FC<EmailFieldProps> = ({ value, onChange, error, setErro
                 value={value}
                 onChange={(event) => {
                     setError("");
+                    console.log('on changing')
                     //@ts-ignore
-                    if (!isValid(event.target.value)) {
+                    if (!isValid(event.target.value) && !isEmpty(event.target.value)) {
                       setError("Invalid email");
                     }
                     onChange(event);

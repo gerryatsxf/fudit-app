@@ -4,7 +4,7 @@ import PasswordField from './PasswordField';
 import EmailField from './EmailField';
 import { Link } from 'react-router-dom';
 
-const Login: React.FC<any> = ({ email, password, onRegister,  setEmail, setPassword, emailError, setEmailError, isValidEmail }) => {
+const Login: React.FC<any> = ({ email, password, onRegister, onForgot, setEmail, setPassword, emailError, setEmailError, isValidEmail, isEmptyEmail }) => {
 
   function onSubmit(email: string, password: string){
     console.log(email, password)
@@ -28,6 +28,7 @@ const Login: React.FC<any> = ({ email, password, onRegister,  setEmail, setPassw
         error={emailError}
         setError={setEmailError}
         isValid={isValidEmail}
+        isEmpty={isEmptyEmail}
       ></EmailField>
       <PasswordField
         value={password}
@@ -38,7 +39,7 @@ const Login: React.FC<any> = ({ email, password, onRegister,  setEmail, setPassw
       ></PasswordField>
       <input type="submit" value="Login" />
       <div className={classes.links}>
-        <Link to='/forgot-password'>
+        <Link to='/forgot-password' onClick={() => onForgot({ email, password })}>
           Forgot password
         </Link>
         <Link to='/register' onClick={() => onRegister({ email, password })}>
