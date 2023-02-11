@@ -3,16 +3,39 @@ import classes from './Login.module.scss'
 import PasswordField from './PasswordField';
 import EmailField from './EmailField';
 import { Link } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-const Login: React.FC<any> = ({ email, password, onRegister, onForgot, setEmail, setPassword, emailError, setEmailError, isValidEmail, isEmptyEmail }) => {
+import Cookies from 'js-cookie';
+
+const Login: React.FC<any> = ({ email, password, onRegister, onForgot, setEmail, setPassword, emailError, setEmailError, isValidEmail, isEmptyEmail, navigate}) => {
+
+  const auth = getAuth();
 
   function onSubmit(email: string, password: string){
     console.log(email, password)
+    loginUser(email, password)
   }
 
   function handleSubmit(event: any) {
     event.preventDefault();
     onSubmit(email, password);
+  }
+
+  function loginUser(username: string, password: string){
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+        console.log(userCredential)
+        // Cookies.set('userCredentials', userCredential);
+        // ...
+        navigate("/home");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   }
   
   return (
