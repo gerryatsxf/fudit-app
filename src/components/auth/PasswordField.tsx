@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import classes from './PasswordField.module.scss'
-import eyeIcon from '../../assets/eye-solid.svg'
-import eyeSlashIcon from '../../assets/eye-slash-solid.svg'
-import Eye from '../Icon/Eye'
-import EyeSlash from '../Icon/EyeSlash'
+import Eye from '../common/icons/Eye'
+import EyeSlash from '../common/icons/EyeSlash'
 interface PasswordFieldProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -53,7 +51,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({ value, onChange }) => {
         type="button"         
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}>
-        { eyeSlash == 'Hide' ? getEye() : getEyeSlash() }
+        { eyeSlash === 'Hide' ? getEye() : getEyeSlash() }
       </button>
     </div>
   );

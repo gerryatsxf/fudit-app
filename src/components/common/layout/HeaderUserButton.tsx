@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './HeaderUserButton.module.scss'
-import user from '../../assets/user.svg'
+import user from '../../../assets/user.svg'
 const HeaderUserButton = (props: any) => {
     return (
         <button className={classes.button}>

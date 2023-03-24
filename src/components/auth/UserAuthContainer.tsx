@@ -1,37 +1,18 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import ForgotPassword from "./ForgotPassword";
 import Login from "./Login";
 import Register from "./Register";
-
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {FuditLoadingContext, UserContext} from "../common/layout/RootContainer";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDwI3X68ztEHWjew38ifcrCxiDT-Qm3EeE",
-  authDomain: "fudit-9b983.firebaseapp.com",
-  projectId: "fudit-9b983",
-  storageBucket: "fudit-9b983.appspot.com",
-  messagingSenderId: "347145460975",
-  appId: "1:347145460975:web:136889857ca1f8ba2a0f1a",
-  measurementId: "G-PK42PBC2R2"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+const authViewCtx = React.createContext({view: '', setView: (view: string) => {}});
 
 const UserAuthContainer: React.FC = () => {
   
   const isValidEmail = (email: string) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) 
   const isEmptyEmail = (email: string) => email === '';
+
+  // TODO: REDIRECT TO APP IF ACCESS TOKEN IS PRESENT
 
   const LOGIN = 'login'
   const REGISTER = 'register'
@@ -40,16 +21,57 @@ const UserAuthContainer: React.FC = () => {
   const [view, setView] = useState(LOGIN);
 
   const [email, setEmail] = useState('');
-  // const [emptyEmail, setEmptyEmail] = useState(isEmptyEmail(email));
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(isValidEmail(email) || isEmptyEmail(email) ? "" : "Invalid email");
+  const [accessToken, setAccessToken] = useState(null);
 
-  if (view == REGISTER) {
+  const userCtx = React.useContext(UserContext);
+  const loadingCtx = React.useContext(FuditLoadingContext);
+
+  useEffect(() => {
+
+    const token = localStorage.getItem('fudit_access_token');
+    console.log('Access token found in local storage: ', token)
+
+    // if (token !== null) {
+    //   // loadingCtx.setLoading(false);
+    //   navigate("/");
+    //   return;
+    // } else {
+    //   loadingCtx.setLoading(false);
+    // }
+    //
+    // const config: ConfigurationParameters = {basePath:'http://localhost:3002',accessToken: `${token}`};
+    // const usersApi = new UsersApi(new Configuration(config));
+    //
+    // usersApi.usersControllerGetProfile().then((response) => {
+    //   //@ts-ignore
+    //   userCtx.setUser(response.data.data.user)
+    //   navigate("/app")
+    // }).catch((error) => {
+    //   console.error('There was an error while validating token.', error);
+    //   navigate("/login");
+    // })
+    // .finally(() => {
+    //   loadingCtx.setLoading(false);
+    // });
+
+  }, [loadingCtx, userCtx, navigate]);
+
+
+
+  // if (loadingCtx.loading) {
+  //   return (
+  //       <LoadingIndicator></LoadingIndicator>
+  //   );
+  // } else
+    if (view === REGISTER) {
     return <Register 
       email={email} 
       password={password} 
       setEmail={setEmail}
       setPassword={setPassword}
+      setAccessToken={setAccessToken}
       // @ts-ignore
       onLogin={({ email, password }) => setView(LOGIN) & setEmail(email) & setPassword(password)}
       setEmailError={setEmailError}
@@ -57,13 +79,14 @@ const UserAuthContainer: React.FC = () => {
       isEmptyEmail={isEmptyEmail}
       navigate={navigate}
     />;
-  } else if (view == LOGIN) {
+  } else if (view === LOGIN) {
     return <Login 
       email={email} 
       password={password} 
       setEmail={setEmail}
       setPassword={setPassword}
-      // @ts-ignore
+      setAccessToken={setAccessToken}
+        // @ts-ignore
       onRegister={({ email, password }) => setView(REGISTER) & setEmail(email) & setPassword(password)} 
       // @ts-ignore
       onForgot={({ email }) => setView(FORGOT) & setEmail(email)} 
@@ -73,7 +96,7 @@ const UserAuthContainer: React.FC = () => {
       isEmptyEmail={isEmptyEmail}
       navigate={navigate}
     />;
-  } else if (view == FORGOT) {
+  } else if (view === FORGOT) {
     console.log(FORGOT)
     return <ForgotPassword 
       email={email} 

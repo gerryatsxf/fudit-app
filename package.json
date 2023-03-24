@@ -10,6 +10,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/websocket": "^1.0.5",
+    "axios": "^1.3.4",
     "firebase": "^9.17.1",
     "js-cookie": "^3.0.1",
     "react": "^18.2.0",
@@ -17,6 +18,7 @@
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "sass": "^1.58.0",
+    "styled-components": "^5.3.9",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -24,7 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "openapi:generate": "openapi-generator-cli generate -i C:/Users/IGNITER/work/fudit-api/swagger-spec.json -g typescript-axios -o ./src/api"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +48,8 @@
     ]
   },
   "devDependencies": {
-    "@types/js-cookie": "^3.0.2"
+    "@openapitools/openapi-generator-cli": "^2.5.2",
+    "@types/js-cookie": "^3.0.2",
+    "@types/styled-components": "^5.1.26"
   }
 }
