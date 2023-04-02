@@ -1,14 +1,21 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import classes from './Register.module.scss'
 import PasswordField from './PasswordField';
 import EmailField from './EmailField';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {AuthenticationApi, Configuration, ConfigurationParameters, UserRegistrationDto} from "../../api";
 import LoadingIndicator from "../common/bootstrap/LoadingIndicator";
+import {AuthContext} from "./UserAuthContainer";
 
-const Register: React.FC<any> = ({ email, password, onLogin, setEmail, setPassword, setAccessToken, emailError, setEmailError, isValidEmail, isEmptyEmail, navigate}) => {
-    //const navigate = useNavigate();
+const Register: React.FC<any> = () => {
+    const navigate = useNavigate();
     const [registerRequestLoading, setRegisterRequestLoading] = React.useState(false);
+    const authCtx = useContext(AuthContext);
+    const email = authCtx.email;
+    const password = authCtx.password;
+    const onLogin = () => {
+        navigate('/login')
+    }
   function onSubmit(email: string, password: string){
     console.log('Submitting the following pair: ', {email, password})
     createUser(email, password)
@@ -16,7 +23,6 @@ const Register: React.FC<any> = ({ email, password, onLogin, setEmail, setPasswo
   
   function handleSubmit(event: any) {
     event.preventDefault();
-
     onSubmit(email, password);
   }
 
@@ -57,29 +63,13 @@ const Register: React.FC<any> = ({ email, password, onLogin, setEmail, setPasswo
     <form className={classes.register} onSubmit={handleSubmit}>
       <h2>Hi, stranger...</h2>
       <p>register pls</p>
-      <EmailField
-        value={email}
-        onChange={(event) => {
-          //@ts-ignore
-          setEmail(event.target.value);
-        }}
-        error={emailError}
-        setError={setEmailError}
-        isValid={isValidEmail}
-        isEmpty={isEmptyEmail}
-      ></EmailField>
-      <PasswordField
-        value={password}
-        onChange={(event) => {
-          //@ts-ignore
-          setPassword(event.target.value);
-        }}
-      ></PasswordField>
+      <EmailField></EmailField>
+      <PasswordField></PasswordField>
       <input type="submit" value="Register" />
       <div className={classes.links}>
-        <Link to='/' onClick={() => onLogin({ email, password })}>
-          Login
-        </Link>
+          <a onClick={() => onLogin()}>
+              Login
+          </a>
       </div>
     </form>
   )

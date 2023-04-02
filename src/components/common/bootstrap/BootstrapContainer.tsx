@@ -4,8 +4,6 @@ import LoadingIndicator from "./LoadingIndicator";
 import {FuditLoadingContext, UserContext} from "../layout/RootContainer";
 import {Configuration, ConfigurationParameters, UsersApi} from "../../../api";
 
-
-// @ts-ignore
 function BootstrapContainer() {
     const navigate = useNavigate();
     const loadingCtx = React.useContext(FuditLoadingContext);

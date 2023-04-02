@@ -8,30 +8,34 @@ import Header from "./Header";
 
 export const UserContext = createContext({user: null, setUser: (user: any) => {}});
 export const FuditLoadingContext = createContext({loading: true, setLoading: (loading: boolean) => {}});
+export const AuthViewContext = React.createContext({authView: '', setAuthView: (authView: string) => {}});
 
 const RootContainer = (props: any) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [authView, setAuthView] = useState('');
 
     return (
         <div>
             <UserContext.Provider value={{user, setUser}}>
                 <FuditLoadingContext.Provider value={{loading, setLoading}}>
-                    <Header></Header>
-                    <div className={classes.rootContainer}>
-                        <Router>
-                            <Fragment>
-                                <Routes>
-                                    <Route path='/' element={<BootstrapContainer/>}/>
-                                    <Route path='/login' element={<UserAuthContainer/>}/>
-                                    <Route path='/register' element={<UserAuthContainer/>}/>
-                                    <Route path='/forgot-password' element={<UserAuthContainer/>}/>
-                                    <Route path='/app' element={<FuditApp/>}/>
-                                </Routes >
-                            </Fragment>
-                        </Router>
-                    </div>
+                    <AuthViewContext.Provider value={{authView, setAuthView}}>
+                        <Header></Header>
+                        <div className={classes.rootContainer}>
+                            <Router>
+                                <Fragment>
+                                    <Routes>
+                                        <Route path='/' element={<BootstrapContainer/>}/>
+                                        <Route path='/login' element={<UserAuthContainer/>}/>
+                                        <Route path='/register' element={<UserAuthContainer/>}/>
+                                        <Route path='/forgot-password' element={<UserAuthContainer/>}/>
+                                        <Route path='/app' element={<FuditApp/>}/>
+                                    </Routes >
+                                </Fragment>
+                            </Router>
+                        </div>
+                    </AuthViewContext.Provider>
                 </FuditLoadingContext.Provider>
             </UserContext.Provider>
         </div>
