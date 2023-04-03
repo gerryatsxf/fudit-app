@@ -4,11 +4,16 @@ import LoadingIndicator from "../common/bootstrap/LoadingIndicator";
 import { useNavigate } from "react-router-dom";
 import {
   FuditLoadingContext,
+  NavigationContext,
   UserContext,
 } from "../common/layout/RootContainer";
 import { Outlet } from "react-router-dom";
 
 function FuditApp() {
+  const navigationCtx = React.useContext(NavigationContext);
+  const navigation = navigationCtx.navigation;
+  const userInSettings = window.location.pathname.includes("/app/in-settings");
+
   const navigate = useNavigate();
   const loadingCtx = React.useContext(FuditLoadingContext);
   const userCtx = React.useContext(UserContext);

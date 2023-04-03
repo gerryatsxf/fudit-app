@@ -8,7 +8,12 @@ import Header from "./Header";
 import DietaryPlans from "../../fudit-app/DietaryPlans/DietaryPlans";
 import MyAccount from "../../fudit-app/MyAccount/MyAccount";
 import Foods from "../../fudit-app/Foods/Foods";
+import Meals from "../../fudit-app/Meals/Meals";
+import Settings from "../../fudit-app/Settings/Settings";
 
+export const NavigationContext = createContext({
+  navigation: null,
+});
 export const UserContext = createContext({
   user: null,
   setUser: (user: any) => {},
@@ -47,9 +52,9 @@ const RootContainer = (props: any) => {
                     <Route path="app" element={<FuditApp />}>
                       <Route path="my-account" element={<MyAccount />} />
                       <Route path="dietary-plans" element={<DietaryPlans />} />
-                      <Route path="meals" element={<DietaryPlans />} />
+                      <Route path="meals" element={<Meals />} />
                       <Route path="foods" element={<Foods />} />
-                      <Route path="settings" element={<DietaryPlans />} />
+                      <Route path="settings" element={<Settings />} />
                     </Route>
                   </Routes>
                 </Fragment>

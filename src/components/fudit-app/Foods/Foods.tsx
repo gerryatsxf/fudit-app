@@ -14,10 +14,10 @@ const Foods = () => {
       "Blueberries",
       "Almonds",
       "Oatmeal",
-      "Dark Chocolate"
+      "Dark Chocolate",
     ];
     return foods;
-  }
+  };
   useEffect(() => {
     const loadFoods = async () => {
       const foods = await getFoods();
@@ -27,19 +27,13 @@ const Foods = () => {
     loadFoods();
   }, []);
 
-
-
   return (
     <div>
       <h2 className={styles.title}>Foods</h2>
       {foods.map((food: any) => (
-        <p>
-          {food}
-        </p>
+        <p>{food}</p>
       ))}
-
     </div>
   );
-
-}
+};
 export default Foods;
