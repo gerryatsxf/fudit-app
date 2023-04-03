@@ -5,7 +5,7 @@ import EmailField from './EmailField';
 import {useNavigate} from 'react-router-dom';
 import {AuthenticationApi, Configuration, ConfigurationParameters, UserRegistrationDto} from "../../api";
 import LoadingIndicator from "../common/bootstrap/LoadingIndicator";
-import {AuthContext} from "./UserAuthContainer";
+import {AuthContext, RegisterContext} from "./UserAuthContainer";
 import FirstNameField from "./FirstNameField";
 import LastNameField from "./LastNameField";
 
@@ -13,23 +13,26 @@ const Register: React.FC<any> = () => {
     const navigate = useNavigate();
     const [registerRequestLoading, setRegisterRequestLoading] = React.useState(false);
     const authCtx = useContext(AuthContext);
+    const registerCtx = useContext(RegisterContext);
 
+    const firstName = registerCtx.firstName;
+    const lastName = registerCtx.lastName;
     const email = authCtx.email;
     const password = authCtx.password;
     const onLogin = () => {
         navigate('/login')
     }
-  function onSubmit(email: string, password: string){
+  function onSubmit(firstName: string, lastName: string, email: string, password: string){
     console.log('Submitting the following pair: ', {email, password})
-    createUser(email, password)
+    createUser(firstName, lastName, email, password)
   }
   
   function handleSubmit(event: any) {
     event.preventDefault();
-    onSubmit(email, password);
+    onSubmit(firstName, lastName, email, password);
   }
 
-  function createUser(email: string, password: string){
+  function createUser(firstName: string, lastName: string, email: string, password: string){
       setRegisterRequestLoading(true);
       const config: ConfigurationParameters = {basePath: `http://localhost:3002`};
       const authApi = new AuthenticationApi(new Configuration(config))
@@ -37,8 +40,8 @@ const Register: React.FC<any> = () => {
           email: Math.random() + email, // TODO: REMOVE RANDOM NUMBER GENERATION AFTER TESTING IS FINISHED
           password: password,
           dateOfBirth: '2022',
-          firstName: '',
-          lastName: ''
+          firstName: firstName,
+          lastName: lastName
       }
 
       authApi.authControllerRegister(requestBody).then((response) => {
