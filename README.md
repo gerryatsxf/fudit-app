@@ -1,6 +1,7 @@
 # fudit-app
 
 User story 1 - Bootstrap:
+
 - User can load the app in the browser.
 - User can see a loading indicator while the app is loading.
 - User cannot see an icon indicating that the user is logged in.
@@ -23,5 +24,3 @@ User story 2 - Authentication:
 - User can reset their password by filling out a form with their email. They are sent an email with a link to a "reset password" page.
 - User can update their profile by filling out a form with the first name, last name and email.
 - User can see their profile information on a separate page.
-
-

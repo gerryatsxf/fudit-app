@@ -1,4 +1,3 @@
-
 .login {
   margin: 20px auto;
   padding: 40px 50px;
@@ -15,44 +14,44 @@
   margin: 10px 0;
   padding: 14px 12px;
   font-size: 16px;
-  border-radius: 2px; 
+  border-radius: 2px;
 }
 
-.login input[type=text],
-.login input[type=password] {
+.login input[type="text"],
+.login input[type="password"] {
   border: 3px solid rgb(133, 168, 215);
-  transition: .2s;
+  transition: 0.2s;
   background-color: white;
   color: grey;
 }
 
-.login input[type=text] {
-  margin-bottom: 0; 
+.login input[type="text"] {
+  margin-bottom: 0;
 }
 
-.login input[type=text]:hover,
-.login input[type=password]:hover {
+.login input[type="text"]:hover,
+.login input[type="password"]:hover {
   border-color: lightgray;
   outline: none;
-  transition: all .2s ease-in-out;
-} 
+  transition: all 0.2s ease-in-out;
+}
 
-.login input[type=submit] {
+.login input[type="submit"] {
   border: none;
   background: rgb(133, 168, 215);
   color: white;
-  font-weight: bold;  
+  font-weight: bold;
   transition: 0.2s;
   margin: 20px 0px;
   text-align: center;
 }
 
-.login input[type=submit]:hover {
+.login input[type="submit"]:hover {
   background: rgba(133, 169, 215, 0.733);
 }
 
 .login h2 {
-  margin: 20px 0 0; 
+  margin: 20px 0 0;
   color: white;
   font-size: 28px;
 }
@@ -63,7 +62,7 @@
 
 .links {
   display: table;
-  width: 100%;  
+  width: 100%;
   box-sizing: border-box;
   border-top: 1px solid #c0c0c0;
   margin-bottom: 10px;
@@ -85,12 +84,12 @@
 .login h2,
 .login p,
 .login a {
-  text-align: center;    
+  text-align: center;
 }
 
 .login a {
-  text-decoration: none;  
-  font-size: .8em;
+  text-decoration: none;
+  font-size: 0.8em;
 }
 
 .login a:visited {

@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "openapi:generate": "openapi-generator-cli generate -i C:/Users/IGNITER/work/fudit-api/swagger-spec.json -g typescript-axios -o ./src/api"
+    "openapi:generate": "openapi-generator-cli generate -i C:/Users/IGNITER/work/fudit-api/swagger-spec.json -g typescript-axios -o ./src/api",
+    "prettierrc": "prettier --write ."
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +51,7 @@
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.5.2",
     "@types/js-cookie": "^3.0.2",
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "prettier": "2.8.7"
   }
 }

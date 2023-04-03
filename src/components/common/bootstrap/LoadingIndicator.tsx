@@ -1,9 +1,9 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
 interface Props {
-    size?: number;
-    color?: string;
+  size?: number;
+  color?: string;
 }
 
 const rotate = keyframes`
@@ -26,12 +26,15 @@ const LoadingIndicatorWrapper = styled.div`
     height: ${({ size }: Props) => size}px;
     border-radius: 50%;
     //@ts-ignore
-    border: ${({ size }: Props) => Math.ceil(
-        //@ts-ignore
-        size 
-            / 10)}px solid ${({ color }: Props) => color};
+    border: ${({ size }: Props) =>
+        Math.ceil(
+          //@ts-ignore
+          size / 10
+        )}px
+      solid ${({ color }: Props) => color};
     animation: ${rotate} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: ${({ color }: Props) => color} transparent transparent transparent;
+    border-color: ${({ color }: Props) => color} transparent transparent
+      transparent;
   }
   div:nth-child(1) {
     animation-delay: -0.45s;
@@ -45,19 +48,17 @@ const LoadingIndicatorWrapper = styled.div`
 `;
 
 const LoadingIndicator: React.FC<Props> = ({
-       size = 50,
-       color = '#2e638b',
-   }) => {
-    return (
-        <LoadingIndicatorWrapper size={size} color={color}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </LoadingIndicatorWrapper>
-    );
+  size = 50,
+  color = "#2e638b",
+}) => {
+  return (
+    <LoadingIndicatorWrapper size={size} color={color}>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </LoadingIndicatorWrapper>
+  );
 };
 
 export default LoadingIndicator;
-
-
