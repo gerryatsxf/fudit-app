@@ -6,11 +6,14 @@ import {useNavigate} from 'react-router-dom';
 import {AuthenticationApi, Configuration, ConfigurationParameters, UserRegistrationDto} from "../../api";
 import LoadingIndicator from "../common/bootstrap/LoadingIndicator";
 import {AuthContext} from "./UserAuthContainer";
+import FirstNameField from "./FirstNameField";
+import LastNameField from "./LastNameField";
 
 const Register: React.FC<any> = () => {
     const navigate = useNavigate();
     const [registerRequestLoading, setRegisterRequestLoading] = React.useState(false);
     const authCtx = useContext(AuthContext);
+
     const email = authCtx.email;
     const password = authCtx.password;
     const onLogin = () => {
@@ -63,6 +66,8 @@ const Register: React.FC<any> = () => {
     <form className={classes.register} onSubmit={handleSubmit}>
       <h2>Hi, stranger...</h2>
       <p>register pls</p>
+      <FirstNameField></FirstNameField>
+      <LastNameField></LastNameField>
       <EmailField></EmailField>
       <PasswordField></PasswordField>
       <input type="submit" value="Register" />
