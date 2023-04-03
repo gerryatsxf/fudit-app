@@ -1,5 +1,5 @@
 import React from "react";
-import { UserContext } from "../../common/layout/RootContainer";
+import { UserContext } from "../layout/RootContainer";
 
 function User() {
   const userCtx = React.useContext(UserContext);

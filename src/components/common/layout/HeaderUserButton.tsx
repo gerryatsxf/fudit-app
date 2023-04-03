@@ -9,7 +9,12 @@ const HeaderUserButton = (props: any) => {
   const userCtx = React.useContext(UserContext);
   const user = userCtx.user ? userCtx.user : { firstName: "", lastName: "" };
   return (
-    <button className={classes.button} onClick={() => {navigate('/app/my-account')}}>
+    <button
+      className={classes.button}
+      onClick={() => {
+        navigate("/app/my-account");
+      }}
+    >
       <span>
         <img src={userIcon} className={classes.icon} alt="User icon" />
       </span>

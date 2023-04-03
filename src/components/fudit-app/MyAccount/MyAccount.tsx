@@ -1,11 +1,12 @@
 import React from "react";
 import { UserContext } from "../../common/layout/RootContainer";
-import LogoutButton from "../LogoutButton/LogoutButton";
+import LogoutButton from "../../common/user/LogoutButton";
 
 const MyAccount = () => {
   const userCtx = React.useContext(UserContext);
-  console.log('inside my account', userCtx.user)
-  const user = userCtx.user ? userCtx.user : { firstName: "", lastName: "", email: "", dateOfBirth: "" };
+  const user = userCtx.user
+    ? userCtx.user
+    : { firstName: "", lastName: "", email: "", dateOfBirth: "" };
   return (
     <div>
       <br></br>
@@ -18,6 +19,6 @@ const MyAccount = () => {
       <p>In case you need to go out:</p>
       <LogoutButton></LogoutButton>
     </div>
-  )
-}
+  );
+};
 export default MyAccount;

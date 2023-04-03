@@ -14,7 +14,12 @@ const Header = () => {
   return (
     <Fragment>
       <header className={classes.header}>
-        <span className={classes.headerModule} onClick={()=>{navigate('/app')}}>
+        <span
+          className={classes.headerModule}
+          onClick={() => {
+            navigate("/app");
+          }}
+        >
           <span className={classes.headerModuleId}>id</span>entity
         </span>
         {loggedInBadge(userCtx.user)}

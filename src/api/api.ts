@@ -156,7 +156,7 @@ export interface CreateRecipeRequestDto {
    */
   realKcalPerKg?: number;
   /**
-   * Measured weight (in kg) after cooking all portions of recipe
+   * Measured weight (in kg) after cooking all Portions of recipe
    * @type {number}
    * @memberof CreateRecipeRequestDto
    */
@@ -279,7 +279,7 @@ export interface UpdateRecipeRequestDto {
    */
   realKcalPerKg?: number;
   /**
-   * Measured weight (in kg) after cooking all portions of recipe
+   * Measured weight (in kg) after cooking all Portions of recipe
    * @type {number}
    * @memberof UpdateRecipeRequestDto
    */
