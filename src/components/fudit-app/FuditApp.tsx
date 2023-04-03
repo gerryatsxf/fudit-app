@@ -6,6 +6,7 @@ import {
   FuditLoadingContext,
   UserContext,
 } from "../common/layout/RootContainer";
+import { Outlet } from "react-router-dom"
 
 function FuditApp() {
   const navigate = useNavigate();
@@ -25,9 +26,9 @@ function FuditApp() {
   } else {
     return (
       <div>
-        <h2>My App</h2>
-        <p>Welcome to my app!</p>
-        <User />
+        <h2>Recipe Helper app</h2>
+
+        <Outlet />
       </div>
     );
   }
