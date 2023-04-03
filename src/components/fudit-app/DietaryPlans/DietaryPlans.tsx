@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./DietaryPlans.module.scss";
 
 function DietaryPlans() {
   const plans = [
@@ -16,7 +17,7 @@ function DietaryPlans() {
 
   return (
     <div>
-      <h2>Dietary Plans</h2>
+      <h2 className={styles.title}>Dietary Plans</h2>
       <ul>
         {plans.map((plan) => (
           <li key={plan}>{plan}</li>
