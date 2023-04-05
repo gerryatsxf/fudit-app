@@ -11,8 +11,14 @@ import { Outlet } from "react-router-dom";
 
 function FuditApp() {
   const navigationCtx = React.useContext(NavigationContext);
-  const navigation = navigationCtx.navigation;
-  const userInSettings = window.location.pathname.includes("/app/in-settings");
+  const navigationMap = navigationCtx.navigationMap;
+  const setNavigationMap = navigationCtx.setNavigationMap;
+
+  Object.keys(navigationMap).forEach((key: string) => {
+    //@ts-ignore
+    navigationMap[key] = key === window.location.pathname;
+  });
+  setNavigationMap(navigationMap);
 
   const navigate = useNavigate();
   const loadingCtx = React.useContext(FuditLoadingContext);
@@ -25,7 +31,9 @@ function FuditApp() {
       return;
     }
   }, [userCtx.user, navigate]);
-
+  const handlePathChange = (path: string) => {
+    navigate(path);
+  };
   if (loadingCtx.loading) {
     return <LoadingIndicator></LoadingIndicator>;
   } else if (isMyAccount) {
@@ -41,18 +49,44 @@ function FuditApp() {
         <nav className={styles.navbar}>
           <ul>
             <li>
-              <button onClick={() => navigate("/app/dietary-plans")}>
+              <button
+                className={`nav-button ${
+                  navigationMap["/app/dietary-plans"]
+                    ? styles.navButtonActive
+                    : ""
+                }`}
+                onClick={() => navigate("/app/dietary-plans")}
+              >
                 Dietary Plans
               </button>
             </li>
             <li>
-              <button onClick={() => navigate("/app/meals")}>Meals</button>
+              <button
+                className={`nav-button ${
+                  navigationMap["/app/meals"] ? styles.navButtonActive : ""
+                }`}
+                onClick={() => navigate("/app/meals")}
+              >
+                Meals
+              </button>
             </li>
             <li>
-              <button onClick={() => navigate("/app/foods")}>Foods</button>
+              <button
+                className={`nav-button ${
+                  navigationMap["/app/foods"] ? styles.navButtonActive : ""
+                }`}
+                onClick={() => navigate("/app/foods")}
+              >
+                Foods
+              </button>
             </li>
             <li className={styles.settingsBtn}>
-              <button onClick={() => navigate("/app/settings")}>
+              <button
+                className={`nav-button ${
+                  navigationMap["/app/settings"] ? styles.navButtonActive : ""
+                }`}
+                onClick={() => navigate("/app/settings")}
+              >
                 Settings
               </button>
             </li>

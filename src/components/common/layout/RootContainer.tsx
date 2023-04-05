@@ -10,9 +10,15 @@ import MyAccount from "../../fudit-app/MyAccount/MyAccount";
 import Foods from "../../fudit-app/Foods/Foods";
 import Meals from "../../fudit-app/Meals/Meals";
 import Settings from "../../fudit-app/Settings/Settings";
-
+const DEFAULT_NAVIGATION_MAP = {
+  "/app/dietary-plans": false,
+  "/app/meals": false,
+  "/app/foods": false,
+  "/app/settings": false,
+};
 export const NavigationContext = createContext({
-  navigation: null,
+  navigationMap: DEFAULT_NAVIGATION_MAP,
+  setNavigationMap: (navigationMap: any) => {},
 });
 export const UserContext = createContext({
   user: null,
@@ -32,34 +38,44 @@ const RootContainer = (props: any) => {
   const [loading, setLoading] = useState(true);
   const [authView, setAuthView] = useState("");
 
+  const [navigationMap, setNavigationMap] = useState(DEFAULT_NAVIGATION_MAP);
+
   return (
     <div>
       <UserContext.Provider value={{ user, setUser }}>
         <FuditLoadingContext.Provider value={{ loading, setLoading }}>
           <AuthViewContext.Provider value={{ authView, setAuthView }}>
-            <Router>
-              <Header></Header>
-              <div className={classes.rootContainer}>
-                <Fragment>
-                  <Routes>
-                    <Route path="" element={<BootstrapContainer />} />
-                    <Route path="login" element={<UserAuthContainer />} />
-                    <Route path="register" element={<UserAuthContainer />} />
-                    <Route
-                      path="forgot-password"
-                      element={<UserAuthContainer />}
-                    />
-                    <Route path="app" element={<FuditApp />}>
-                      <Route path="my-account" element={<MyAccount />} />
-                      <Route path="dietary-plans" element={<DietaryPlans />} />
-                      <Route path="meals" element={<Meals />} />
-                      <Route path="foods" element={<Foods />} />
-                      <Route path="settings" element={<Settings />} />
-                    </Route>
-                  </Routes>
-                </Fragment>
-              </div>
-            </Router>
+            <NavigationContext.Provider
+              value={{ navigationMap, setNavigationMap }}
+            >
+              <Router>
+                <Header></Header>
+                <div className={classes.rootContainer}>
+                  <Fragment>
+                    <Routes>
+                      <Route path="" element={<BootstrapContainer />} />
+                      <Route path="login" element={<UserAuthContainer />} />
+                      <Route path="register" element={<UserAuthContainer />} />
+                      <Route
+                        path="forgot-password"
+                        element={<UserAuthContainer />}
+                      />
+
+                      <Route path="app" element={<FuditApp />}>
+                        <Route path="my-account" element={<MyAccount />} />
+                        <Route
+                          path="dietary-plans"
+                          element={<DietaryPlans />}
+                        />
+                        <Route path="meals" element={<Meals />} />
+                        <Route path="foods" element={<Foods />} />
+                        <Route path="settings" element={<Settings />} />
+                      </Route>
+                    </Routes>
+                  </Fragment>
+                </div>
+              </Router>
+            </NavigationContext.Provider>
           </AuthViewContext.Provider>
         </FuditLoadingContext.Provider>
       </UserContext.Provider>
