@@ -31,15 +31,13 @@ function FuditApp() {
       return;
     }
   }, [userCtx.user, navigate]);
-  const handlePathChange = (path: string) => {
-    navigate(path);
-  };
+
   if (loadingCtx.loading) {
     return <LoadingIndicator></LoadingIndicator>;
   } else if (isMyAccount) {
     return (
       <div className={styles.fuditAppContainer}>
-        <h2>Recipe Helper app</h2>
+        <br/>
         <Outlet />
       </div>
     );
@@ -92,9 +90,7 @@ function FuditApp() {
             </li>
           </ul>
         </nav>
-
-        <h2>Recipe Helper app</h2>
-
+        <br/>
         <Outlet />
       </div>
     );

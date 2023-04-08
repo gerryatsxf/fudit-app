@@ -1,12 +1,14 @@
-import styles from "../DietaryPlans/DietaryPlans.module.scss";
 import React from "react";
-import { NavigationContext } from "../../common/layout/RootContainer";
+import styles from "./Settings.module.scss";
+import SettingsButton from "./SettingsButton/SettingsButton";
 
 const Settings = () => {
   return (
-    <div>
+    <div className={styles.settingsContainer}>
       <h2 className={styles.title}>Settings</h2>
       <p>These are your app params. Ahoy!</p>
+      <br/>
+      <SettingsButton></SettingsButton>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import styles from "../DietaryPlans/DietaryPlans.module.scss";
-
+import styles from "./Meals.module.scss";
 const Meals = () => {
   const [meals, setMeals] = React.useState([]);
   const getMeals = async () => {
@@ -18,8 +17,8 @@ const Meals = () => {
   }, []);
 
   return (
-    <div>
-      <h2 className={styles.title}>Meals</h2>
+    <div className={styles.mealsContainer}>
+      <h2>Meals</h2>
 
       {meals}
     </div>

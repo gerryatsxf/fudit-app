@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../layout/RootContainer";
+import styles from "./LogoutButton.module.scss";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const LogoutButton = () => {
     userCtx.setUser(null);
     navigate("/");
   };
-  return <button onClick={logout}>Logout</button>;
+  return <button className={styles.logoutButton} onClick={logout}>Logout</button>;
 };
 
 export default LogoutButton;

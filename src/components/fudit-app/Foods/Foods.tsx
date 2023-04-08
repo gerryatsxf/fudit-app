@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
-import styles from "../DietaryPlans/DietaryPlans.module.scss";
+import styles from "./Foods.module.scss";
+
+export const FoodsContext = React.createContext({
+  foods: [],
+}
+);
 
 const Foods = () => {
   const [foods, setFoods] = useState([]);
+
   const getFoods = async () => {
     const foods = [
       "Avocado",
@@ -28,7 +34,7 @@ const Foods = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.foodsContainer}>
       <h2 className={styles.title}>Foods</h2>
       {foods.map((food: any) => (
         <p>{food}</p>

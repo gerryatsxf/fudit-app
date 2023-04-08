@@ -16,7 +16,7 @@ function DietaryPlans() {
   ];
 
   return (
-    <div>
+    <div className={styles.dietaryPlansContainer}>
       <h2 className={styles.title}>Dietary Plans</h2>
       <ul>
         {plans.map((plan) => (
