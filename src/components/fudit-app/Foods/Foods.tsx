@@ -6,6 +6,11 @@ import LoadingIndicator from "../../common/bootstrap/LoadingIndicator";
 import FoodList from "./FoodList/FoodList";
 import { Outlet } from "react-router-dom";
 
+export const foodsContext = React.createContext<any>({
+  foods: [],
+  setFoods: () => {},
+});
+
 const Foods = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,14 +38,20 @@ const Foods = () => {
       });
   }, [userCtx.token]);
 
+  const handleSetFoods = (newFoods: any) => {
+    setFoods(newFoods);
+  };
+
   if (loading) return <LoadingIndicator></LoadingIndicator>;
   else {
     return (
-      <div className={styles.foodsContainer}>
-        <h2 className={styles.title}>Foods</h2>
-        <FoodList foods={foods} />
-        <Outlet />
-      </div>
+      <foodsContext.Provider value={{ foods, setFoods: handleSetFoods }}>
+        <div className={styles.foodsContainer}>
+          <h2 className={styles.title}>Foods</h2>
+          <FoodList foods={foods} setFoods={handleSetFoods} />
+          <Outlet />
+        </div>
+      </foodsContext.Provider>
     );
   }
 };

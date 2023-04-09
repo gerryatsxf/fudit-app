@@ -1,9 +1,17 @@
 import React from "react";
 import styles from "./FoodList.module.scss";
 import FoodListItem from "../FoodListItem/FoodListItem";
+// import { foodsContext } from "../Foods";
+
+type FoodListProps = {
+  foods: any[];
+  setFoods: (newFoods: any) => void;
+};
 
 // @ts-ignore
-const FoodList = ({ foods }) => {
+const FoodList = ({ foods, setFoods }: FoodListProps) => {
+  // const foodsCtx = React.useContext(foodsContext);
+  // const { setFoods: contextSetFoods } = React.useContext(foodsContext);
   return (
     <div className={styles.foodList}>
       {foods.map((food: any) => (

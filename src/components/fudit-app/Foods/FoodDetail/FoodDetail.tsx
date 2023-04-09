@@ -6,9 +6,13 @@ import {
   ConfigurationParameters,
   FoodsApi,
 } from "../../../../api";
+import styles from "./FoodDetail.module.scss";
+import { foodsContext } from "../Foods";
 
 const FoodDetail = () => {
   const navigate = useNavigate();
+  const foodsCtx = React.useContext(foodsContext);
+
   const token = localStorage.getItem("fudit_access_token");
   const { foodId } = useParams();
   console.log("foodId: ", foodId);
@@ -24,6 +28,7 @@ const FoodDetail = () => {
     description: "",
     price: 0,
   });
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [loading, setLoading] = useState(true);
 
@@ -49,12 +54,30 @@ const FoodDetail = () => {
       });
   }, [foodId, token]);
 
+  const handleBack = () => {
+    const config: ConfigurationParameters = {
+      basePath: "http://localhost:3002",
+      accessToken: `${token}`,
+    };
+    const foodsApi = new FoodsApi(new Configuration(config));
+    foodsApi.foodsControllerFindAll().then((response: any) => {
+      const foods = response.data.data.foods;
+      console.log("foods: ", foods);
+      foodsCtx.setFoods(foods);
+    });
+    navigate("/app/foods");
+  };
+
   if (loading) {
     return <LoadingIndicator />;
   } else {
     return (
       <div>
         <h2>{food.name}</h2>
+        <button className={styles.backButton} onClick={handleBack}>
+          Back
+        </button>
+
         <p>{food.description}</p>
         <p>Price: ${food.price}</p>
       </div>
