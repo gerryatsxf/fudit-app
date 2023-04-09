@@ -67,16 +67,28 @@ const FoodDetail = () => {
     });
     navigate("/app/foods");
   };
-
+  const handleDelete = () => {};
+  const handleEdit = () => {};
   if (loading) {
-    return <LoadingIndicator />;
+    return (
+      <div className={`${styles.foodDetailsContainer} ${styles.center}`}>
+        <LoadingIndicator />
+      </div>
+    );
   } else {
     return (
-      <div>
+      <div className={styles.foodDetailsContainer}>
         <h2>{food.name}</h2>
         <button className={styles.backButton} onClick={handleBack}>
           Back
         </button>
+        <button className={styles.editButton} onClick={handleEdit}>
+          Edit
+        </button>
+        <button className={styles.deleteButton} onClick={handleDelete}>
+          Delete
+        </button>
+        <p>{food.id}</p>
 
         <p>{food.description}</p>
         <p>Price: ${food.price}</p>
