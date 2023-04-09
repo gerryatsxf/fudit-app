@@ -18,19 +18,19 @@ function FuditApp() {
     //@ts-ignore
     navigationMap[key] = key === window.location.pathname;
   });
-  setNavigationMap(navigationMap);
+
 
   const navigate = useNavigate();
   const loadingCtx = React.useContext(FuditLoadingContext);
   const userCtx = React.useContext(UserContext);
   const isMyAccount = window.location.pathname.includes("/app/my-account");
   useEffect(() => {
-    console.log("FuditApp", userCtx.user);
     if (userCtx.user === null) {
       navigate("/");
       return;
     }
-  }, [userCtx.user, navigate]);
+    setNavigationMap(navigationMap);
+  }, [userCtx.user, navigate, navigationMap, setNavigationMap]);
 
   if (loadingCtx.loading) {
     return <LoadingIndicator></LoadingIndicator>;

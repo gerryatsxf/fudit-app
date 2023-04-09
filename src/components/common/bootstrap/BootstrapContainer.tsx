@@ -30,6 +30,7 @@ function BootstrapContainer() {
       .then((response) => {
         //@ts-ignore
         userCtx.setUser(response.data.data.user);
+        userCtx.setToken(token);
         navigate("/app");
       })
       .catch((error) => {

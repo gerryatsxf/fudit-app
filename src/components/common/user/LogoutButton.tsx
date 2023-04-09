@@ -9,6 +9,7 @@ const LogoutButton = () => {
   const logout = () => {
     localStorage.removeItem("fudit_access_token");
     userCtx.setUser(null);
+    userCtx.setToken(null);
     navigate("/");
   };
   return <button className={styles.logoutButton} onClick={logout}>Logout</button>;

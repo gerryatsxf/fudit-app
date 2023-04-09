@@ -1,9 +1,16 @@
-import React from "react"
+import React from "react";
+import styles from "./FoodList.module.scss";
+import FoodListItem from "../FoodListItem/FoodListItem";
 
-const FoodList = () => {
+// @ts-ignore
+const FoodList = ({ foods }) => {
   return (
-    <p>This is the food list component</p>
-  )
-}
+    <div className={styles.foodList}>
+      {foods.map((food: any) => (
+        <FoodListItem key={food.id} food={food} />
+      ))}
+    </div>
+  );
+};
 
-export default  FoodList
+export default FoodList;

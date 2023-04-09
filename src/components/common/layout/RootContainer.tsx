@@ -10,6 +10,8 @@ import MyAccount from "../../fudit-app/MyAccount/MyAccount";
 import Foods from "../../fudit-app/Foods/Foods";
 import Meals from "../../fudit-app/Meals/Meals";
 import Settings from "../../fudit-app/Settings/Settings";
+import FoodDetail from "../../fudit-app/Foods/FoodDetail/FoodDetail";
+
 const DEFAULT_NAVIGATION_MAP = {
   "/app/dietary-plans": false,
   "/app/meals": false,
@@ -22,7 +24,9 @@ export const NavigationContext = createContext({
 });
 export const UserContext = createContext({
   user: null,
+  token: null,
   setUser: (user: any) => {},
+  setToken: (token: any) => {},
 });
 export const FuditLoadingContext = createContext({
   loading: true,
@@ -35,14 +39,17 @@ export const AuthViewContext = React.createContext({
 
 const RootContainer = (props: any) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
   const [authView, setAuthView] = useState("");
 
   const [navigationMap, setNavigationMap] = useState(DEFAULT_NAVIGATION_MAP);
 
+  // @ts-ignore
+  // @ts-ignore
   return (
     <div>
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserContext.Provider value={{ user, token, setUser, setToken }}>
         <FuditLoadingContext.Provider value={{ loading, setLoading }}>
           <AuthViewContext.Provider value={{ authView, setAuthView }}>
             <NavigationContext.Provider
@@ -68,7 +75,9 @@ const RootContainer = (props: any) => {
                           element={<DietaryPlans />}
                         />
                         <Route path="meals" element={<Meals />} />
-                        <Route path="foods" element={<Foods />} />
+                        <Route path="foods" element={<Foods />} >
+                          <Route path=":foodId" element={<FoodDetail/>} />
+                        </Route>
                         <Route path="settings" element={<Settings />} />
                       </Route>
                     </Routes>
