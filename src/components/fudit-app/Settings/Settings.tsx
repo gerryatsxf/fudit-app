@@ -7,7 +7,7 @@ const Settings = () => {
     <div className={styles.settingsContainer}>
       <h2 className={styles.title}>Settings</h2>
       <p>These are your app params. Ahoy!</p>
-      <br/>
+      <br />
       <SettingsButton></SettingsButton>
     </div>
   );

@@ -19,7 +19,6 @@ function FuditApp() {
     navigationMap[key] = key === window.location.pathname;
   });
 
-
   const navigate = useNavigate();
   const loadingCtx = React.useContext(FuditLoadingContext);
   const userCtx = React.useContext(UserContext);
@@ -37,7 +36,7 @@ function FuditApp() {
   } else if (isMyAccount) {
     return (
       <div className={styles.fuditAppContainer}>
-        <br/>
+        <br />
         <Outlet />
       </div>
     );
@@ -90,7 +89,7 @@ function FuditApp() {
             </li>
           </ul>
         </nav>
-        <br/>
+        <br />
         <Outlet />
       </div>
     );

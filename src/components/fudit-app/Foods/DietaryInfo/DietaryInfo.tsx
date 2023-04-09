@@ -1,9 +1,7 @@
-import React from "react"
+import React from "react";
 
 const DietaryInfo = () => {
-  return (
-    <p>This is the dietary info component</p>
-  )
-}
+  return <p>This is the dietary info component</p>;
+};
 
-export default  DietaryInfo
+export default DietaryInfo;

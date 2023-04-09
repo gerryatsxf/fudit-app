@@ -75,8 +75,8 @@ const RootContainer = (props: any) => {
                           element={<DietaryPlans />}
                         />
                         <Route path="meals" element={<Meals />} />
-                        <Route path="foods" element={<Foods />} >
-                          <Route path=":foodId" element={<FoodDetail/>} />
+                        <Route path="foods" element={<Foods />}>
+                          <Route path=":foodId" element={<FoodDetail />} />
                         </Route>
                         <Route path="settings" element={<Settings />} />
                       </Route>

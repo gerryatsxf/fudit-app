@@ -1,10 +1,10 @@
-import React from 'react';
-import { FaCog } from 'react-icons/fa';
+import React from "react";
+import { FaCog } from "react-icons/fa";
 
 const SettingsButton = () => {
   const onClick = () => {
-    console.log('Settings button clicked');
-  }
+    console.log("Settings button clicked");
+  };
   return (
     <button onClick={onClick}>
       <FaCog /> Settings

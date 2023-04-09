@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
-import { Configuration, ConfigurationParameters, FoodsApi } from "../../../../api";
+import {
+  Configuration,
+  ConfigurationParameters,
+  FoodsApi,
+} from "../../../../api";
 
 const FoodDetail = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("fudit_access_token");
   const { foodId } = useParams();
-  console.log("foodId: ", foodId)
+  console.log("foodId: ", foodId);
   if (!foodId) {
     navigate("/app/foods");
     // return <LoadingIndicator />;
@@ -15,9 +19,9 @@ const FoodDetail = () => {
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [food, setFood] = useState({
-    id: '',
-    name: '',
-    description: '',
+    id: "",
+    name: "",
+    description: "",
     price: 0,
   });
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -56,8 +60,6 @@ const FoodDetail = () => {
       </div>
     );
   }
-
-
 };
 
 export default FoodDetail;

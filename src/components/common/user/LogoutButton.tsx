@@ -12,7 +12,11 @@ const LogoutButton = () => {
     userCtx.setToken(null);
     navigate("/");
   };
-  return <button className={styles.logoutButton} onClick={logout}>Logout</button>;
+  return (
+    <button className={styles.logoutButton} onClick={logout}>
+      Logout
+    </button>
+  );
 };
 
 export default LogoutButton;

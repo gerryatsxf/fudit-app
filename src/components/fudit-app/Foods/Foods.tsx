@@ -18,9 +18,10 @@ const Foods = () => {
     };
     const foodsApi = new FoodsApi(new Configuration(config));
 
-    foodsApi.foodsControllerFindAll()
+    foodsApi
+      .foodsControllerFindAll()
       .then((response) => {
-        console.log(response)
+        console.log(response);
         //@ts-ignore
         setFoods(response.data.data.foods);
       })
@@ -32,9 +33,7 @@ const Foods = () => {
       });
   }, [userCtx.token]);
 
-  if(loading) return (
-    <LoadingIndicator></LoadingIndicator>
-  )
+  if (loading) return <LoadingIndicator></LoadingIndicator>;
   else {
     return (
       <div className={styles.foodsContainer}>

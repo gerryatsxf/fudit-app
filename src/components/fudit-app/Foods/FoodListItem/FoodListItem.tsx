@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./FoodListItem.module.scss";
 // @ts-ignore
-const FoodListItem = ({ food  }) => {
+const FoodListItem = ({ food }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
