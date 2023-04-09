@@ -8,6 +8,7 @@ import {
 } from "../../../../api";
 import styles from "./FoodDetail.module.scss";
 import { foodsContext } from "../Foods";
+import DietaryInfo from "../DietaryInfo/DietaryInfo";
 
 const FoodDetail = () => {
   const navigate = useNavigate();
@@ -26,7 +27,16 @@ const FoodDetail = () => {
     id: "",
     name: "",
     description: "",
-    price: 0,
+    dietaryInfo: {
+      kcalPerKg: 0,
+      proteinsPerKg: 0,
+      carbohydratesPerKg: 0,
+      lipidsPerKg: 0,
+      kcalPerLt: 0,
+      proteinsPerLt: 0,
+      carbohydratesPerLt: 0,
+      lipidsPerLt: 0,
+    },
   });
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -54,7 +64,7 @@ const FoodDetail = () => {
       });
   }, [foodId, token]);
 
-  const handleBack = () => {
+  const handleClose = () => {
     const config: ConfigurationParameters = {
       basePath: "http://localhost:3002",
       accessToken: `${token}`,
@@ -76,11 +86,12 @@ const FoodDetail = () => {
       </div>
     );
   } else {
+    // @ts-ignore
     return (
       <div className={styles.foodDetailsContainer}>
         <h2>{food.name}</h2>
-        <button className={styles.backButton} onClick={handleBack}>
-          Back
+        <button className={styles.closeButton} onClick={handleClose}>
+          Close
         </button>
         <button className={styles.editButton} onClick={handleEdit}>
           Edit
@@ -88,10 +99,16 @@ const FoodDetail = () => {
         <button className={styles.deleteButton} onClick={handleDelete}>
           Delete
         </button>
-        <p>{food.id}</p>
 
-        <p>{food.description}</p>
-        <p>Price: ${food.price}</p>
+        <br />
+
+        <div className={styles.infoContainer}>
+          <p>
+            <span className={styles.descriptionLabel}>Description:</span>{" "}
+            {food.description}
+          </p>
+          <DietaryInfo dietaryInfo={food.dietaryInfo} />
+        </div>
       </div>
     );
   }
