@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Foods.module.scss";
-import { Configuration, ConfigurationParameters, FoodsApi } from "../../../api";
+import {
+  Configuration,
+  ConfigurationParameters,
+  FoodsApi,
+  UpdateFoodRequestDto,
+} from "../../../api";
 import { UserContext } from "../../common/layout/RootContainer";
 import LoadingIndicator from "../../common/bootstrap/LoadingIndicator";
 import FoodList from "./FoodList/FoodList";
@@ -11,11 +16,20 @@ export const foodsContext = React.createContext<any>({
   setFoods: () => {},
 });
 
+export const updateFoodContext = React.createContext<any>({
+  updateFoodRequest: {} as UpdateFoodRequestDto,
+  userIsEditing: false,
+  setUpdateFoodRequest: () => {},
+  setUserIsEditing: () => {},
+});
 const Foods = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const userCtx = React.useContext(UserContext);
-
+  const [userIsEditing, setUserIsEditing] = useState(false);
+  const [updateFoodRequest, setUpdateFoodRequest] = useState(
+    {} as UpdateFoodRequestDto
+  );
   useEffect(() => {
     const config: ConfigurationParameters = {
       basePath: "http://localhost:3002",
@@ -46,11 +60,20 @@ const Foods = () => {
   else {
     return (
       <foodsContext.Provider value={{ foods, setFoods: handleSetFoods }}>
-        <div className={styles.foodsContainer}>
-          <h2 className={styles.title}>Foods</h2>
-          <FoodList foods={foods} setFoods={handleSetFoods} />
-          <Outlet />
-        </div>
+        <updateFoodContext.Provider
+          value={{
+            updateFoodRequest,
+            setUpdateFoodRequest,
+            userIsEditing,
+            setUserIsEditing,
+          }}
+        >
+          <div className={styles.foodsContainer}>
+            <h2 className={styles.title}>Foods</h2>
+            <FoodList foods={foods} setFoods={handleSetFoods} />
+            <Outlet />
+          </div>
+        </updateFoodContext.Provider>
       </foodsContext.Provider>
     );
   }

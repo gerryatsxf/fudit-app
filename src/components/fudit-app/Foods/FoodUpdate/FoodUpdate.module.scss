@@ -1,5 +1,4 @@
 .closeButton {
-  //background-color: #f00;
   color: #fff;
   padding: 10px 20px;
   border: 1px solid #fff;
@@ -9,7 +8,6 @@
 }
 
 .editButton {
-  //background-color: #f00;
   color: #fff;
   padding: 10px 20px;
   border: 1px solid #fff;
@@ -19,7 +17,6 @@
 }
 
 .deleteButton {
-  //background-color: #f00;
   color: #fff;
   padding: 10px 20px;
   border: 1px solid #fff;
@@ -28,13 +25,11 @@
   margin-right: 10px;
 }
 
-.foodDetailsContainer {
+.foodUpdateContainer {
   border: 1px solid white;
   padding: 10px;
   margin-top: 15px;
   background-color: #164a6e;
-
-  //border: 1px solid  #f5f5f5;
   border-radius: 5px;
 }
 
@@ -49,9 +44,33 @@
 }
 
 .infoContainer {
-  //display: flex;
-  //justify-content: space-between;
-  //align-items: center;
   margin-top: 15px;
   margin-bottom: 10px;
+}
+.buttonsContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.foodNameContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+}
+
+.foodDescriptionContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+}
+
+.seamlessInput {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  outline: none;
+  //margin: 5px;
+  width: 100%;
+  border-bottom: 1px solid white;
 }

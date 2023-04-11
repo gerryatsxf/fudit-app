@@ -16,7 +16,7 @@ function FuditApp() {
 
   Object.keys(navigationMap).forEach((key: string) => {
     //@ts-ignore
-    navigationMap[key] = key === window.location.pathname;
+    navigationMap[key] = window.location.pathname.includes(key);
   });
 
   const navigate = useNavigate();
