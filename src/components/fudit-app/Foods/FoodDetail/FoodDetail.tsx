@@ -7,20 +7,17 @@ import {
   FoodsApi,
 } from "../../../../api";
 import styles from "./FoodDetail.module.scss";
-import { foodsContext, updateFoodContext } from "../Foods";
+import { foodsContext } from "../Foods";
 import DietaryInfo from "../DietaryInfo/DietaryInfo";
 
 const FoodDetail = () => {
   const navigate = useNavigate();
   const foodsCtx = React.useContext(foodsContext);
-  const updateFoodCtx = React.useContext(updateFoodContext);
-  const setUpdateFoodRequest = updateFoodCtx.setUpdateFoodRequest;
   const token = localStorage.getItem("fudit_access_token");
+
   const { foodId } = useParams();
-  console.log("foodId: ", foodId);
   if (!foodId) {
     navigate("/app/foods");
-    // return <LoadingIndicator />;
     return null;
   }
 
@@ -40,7 +37,6 @@ const FoodDetail = () => {
       lipidsPerLt: 0,
     },
   });
-
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [loading, setLoading] = useState(true);
 
@@ -57,22 +53,6 @@ const FoodDetail = () => {
       .foodsControllerFindOne(foodId)
       .then((response: any) => {
         setFood(response.data.data.food);
-        const updateFoodRequest = {
-          id: response.data.data.food.id,
-          name: response.data.data.food.name,
-          description: response.data.data.food.description,
-          kcalPerKg: response.data.data.food.dietaryInfo.kcalPerKg,
-          proteinsPerKg: response.data.data.food.dietaryInfo.proteinsPerKg,
-          carbohydratesPerKg:
-            response.data.data.food.dietaryInfo.carbohydratesPerKg,
-          lipidsPerKg: response.data.data.food.dietaryInfo.lipidsPerKg,
-          kcalPerLt: response.data.data.food.dietaryInfo.kcalPerLt,
-          proteinsPerLt: response.data.data.food.dietaryInfo.proteinsPerLt,
-          carbohydratesPerLt:
-            response.data.data.food.dietaryInfo.carbohydratesPerLt,
-          lipidsPerLt: response.data.data.food.dietaryInfo.lipidsPerLt,
-        };
-        setUpdateFoodRequest(updateFoodRequest);
       })
       .catch((error: any) => {
         console.error("There was an error while fetching the food.", error);
@@ -80,7 +60,7 @@ const FoodDetail = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [foodId, setUpdateFoodRequest, token]);
+  }, [foodId, token]);
 
   const handleClose = () => {
     const config: ConfigurationParameters = {
@@ -99,6 +79,7 @@ const FoodDetail = () => {
   const handleEdit = () => {
     navigate(`/app/foods/${foodId}/update`);
   };
+
   if (loading) {
     return (
       <div className={`${styles.foodDetailsContainer} ${styles.center}`}>
@@ -115,7 +96,7 @@ const FoodDetail = () => {
         <button className={styles.editButton} onClick={handleEdit}>
           Edit
         </button>
-        <button className={styles.deleteButton} onClick={handleDelete} >
+        <button className={styles.deleteButton} onClick={handleDelete}>
           Delete
         </button>
 

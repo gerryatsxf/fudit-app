@@ -16,20 +16,10 @@ export const foodsContext = React.createContext<any>({
   setFoods: () => {},
 });
 
-export const updateFoodContext = React.createContext<any>({
-  updateFoodRequest: {} as UpdateFoodRequestDto,
-  userIsEditing: false,
-  setUpdateFoodRequest: () => {},
-  setUserIsEditing: () => {},
-});
 const Foods = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const userCtx = React.useContext(UserContext);
-  const [userIsEditing, setUserIsEditing] = useState(false);
-  const [updateFoodRequest, setUpdateFoodRequest] = useState(
-    {} as UpdateFoodRequestDto
-  );
   useEffect(() => {
     const config: ConfigurationParameters = {
       basePath: "http://localhost:3002",
@@ -60,20 +50,11 @@ const Foods = () => {
   else {
     return (
       <foodsContext.Provider value={{ foods, setFoods: handleSetFoods }}>
-        <updateFoodContext.Provider
-          value={{
-            updateFoodRequest,
-            setUpdateFoodRequest,
-            userIsEditing,
-            setUserIsEditing,
-          }}
-        >
-          <div className={styles.foodsContainer}>
-            <h2 className={styles.title}>Foods</h2>
-            <FoodList foods={foods} setFoods={handleSetFoods} />
-            <Outlet />
-          </div>
-        </updateFoodContext.Provider>
+        <div className={styles.foodsContainer}>
+          <h2 className={styles.title}>Foods</h2>
+          <FoodList foods={foods} setFoods={handleSetFoods} />
+          <Outlet />
+        </div>
       </foodsContext.Provider>
     );
   }

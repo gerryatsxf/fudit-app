@@ -62,6 +62,10 @@
 .foodDescriptionContainer {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  //padding: 40px;
 }
 
 .seamlessInput {
@@ -70,7 +74,21 @@
   color: inherit;
   font: inherit;
   outline: none;
-  //margin: 5px;
+  padding-left: 5px;
   width: 100%;
-  border-bottom: 1px solid white;
+}
+.foodUpdateContainer {
+  border: 1px solid white;
+  padding: 10px;
+  margin-top: 15px;
+  background-color: #164a6e;
+
+  //border: 1px solid  #f5f5f5;
+  border-radius: 5px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

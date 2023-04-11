@@ -16,7 +16,7 @@ const DietaryInfo = ({ dietaryInfo }) => {
     lipids: +dietaryInfo.lipidsPerLt,
   };
 
-  const setupUnits = (config: any) => {
+  const setupTableRows = (config: any) => {
     const { kcal, proteins, carbohydrates, lipids } = config;
     const units = {
       kcal: "kcal",
@@ -39,22 +39,22 @@ const DietaryInfo = ({ dietaryInfo }) => {
         <Fragment>
           <tr>
             <td>kcalPerKg:</td>
-            <td>{dietaryInfo.kcalPerKg}</td>
+            <td>{kcal}</td>
             <td>({units.kcal})</td>
           </tr>
           <tr>
             <td>proteinsPerKg:</td>
-            <td>{dietaryInfo.proteinsPerKg}</td>
+            <td>{proteins}</td>
             <td>({units.proteins})</td>
           </tr>
           <tr>
             <td>carbohydratesPerKg:</td>
-            <td>{dietaryInfo.carbohydratesPerKg}</td>
+            <td>{carbohydrates}</td>
             <td>({units.carbohydrates})</td>
           </tr>
           <tr>
             <td>lipidsPerKg:</td>
-            <td>{dietaryInfo.lipidsPerKg}</td>
+            <td>{lipids}</td>
             <td>({units.lipids})</td>
           </tr>
         </Fragment>
@@ -67,8 +67,8 @@ const DietaryInfo = ({ dietaryInfo }) => {
   return (
     <table className={styles.dietaryInfoTable}>
       <tbody>
-        {setupUnits(kgConfig)}
-        {setupUnits(ltConfig)}
+        {setupTableRows(kgConfig)}
+        {setupTableRows(ltConfig)}
       </tbody>
     </table>
   );
