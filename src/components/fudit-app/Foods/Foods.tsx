@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Foods.module.scss";
-import {
-  Configuration,
-  ConfigurationParameters,
-  FoodsApi,
-  UpdateFoodRequestDto,
-} from "../../../api";
+import { Configuration, ConfigurationParameters, FoodsApi } from "../../../api";
 import { UserContext } from "../../common/layout/RootContainer";
 import LoadingIndicator from "../../common/bootstrap/LoadingIndicator";
 import FoodList from "./FoodList/FoodList";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 export const foodsContext = React.createContext<any>({
   foods: [],
@@ -17,6 +12,7 @@ export const foodsContext = React.createContext<any>({
 });
 
 const Foods = () => {
+  const navigate = useNavigate();
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const userCtx = React.useContext(UserContext);
@@ -53,6 +49,14 @@ const Foods = () => {
         <div className={styles.foodsContainer}>
           <h2 className={styles.title}>Foods</h2>
           <FoodList foods={foods} setFoods={handleSetFoods} />
+          <br />
+          <button
+            className={styles.createButton}
+            onClick={() => navigate("/app/foods/create")}
+          >
+            Create
+          </button>
+          <br />
           <Outlet />
         </div>
       </foodsContext.Provider>

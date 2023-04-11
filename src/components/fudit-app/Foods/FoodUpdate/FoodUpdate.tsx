@@ -9,10 +9,9 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "../FoodUpdate/FoodUpdate.module.scss";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
-import DietaryInfoUpdate from "../DietaryInfoUpdate/DietaryInfoUpdate";
+import DietaryInfoUpdate from "../DietaryInfoEdit/DietaryInfoEdit";
 
 const FoodUpdate = () => {
-
   // Initialize context and states
   const token = localStorage.getItem("fudit_access_token");
   const navigate = useNavigate();
@@ -52,12 +51,12 @@ const FoodUpdate = () => {
             kcalPerKg: response.data.data.food.dietaryInfo.kcalPerKg,
             proteinsPerKg: response.data.data.food.dietaryInfo.proteinsPerKg,
             carbohydratesPerKg:
-            response.data.data.food.dietaryInfo.carbohydratesPerKg,
+              response.data.data.food.dietaryInfo.carbohydratesPerKg,
             lipidsPerKg: response.data.data.food.dietaryInfo.lipidsPerKg,
             kcalPerLt: response.data.data.food.dietaryInfo.kcalPerLt,
             proteinsPerLt: response.data.data.food.dietaryInfo.proteinsPerLt,
             carbohydratesPerLt:
-            response.data.data.food.dietaryInfo.carbohydratesPerLt,
+              response.data.data.food.dietaryInfo.carbohydratesPerLt,
             lipidsPerLt: response.data.data.food.dietaryInfo.lipidsPerLt,
           };
           setUpdateFoodRequest(refresh);
@@ -67,12 +66,9 @@ const FoodUpdate = () => {
         })
         .finally(() => {
           setUpdateRequestLoading(false);
-        })
+        });
     }
-
-
   }, [foodId, navigate, setUpdateFoodRequest, token]);
-
 
   // Handle non-existing foodId
   if (!foodId) {
@@ -128,7 +124,7 @@ const FoodUpdate = () => {
       <div className={`${styles.foodUpdateContainer} ${styles.center}`}>
         <LoadingIndicator />
       </div>
-    )
+    );
   } else {
     return (
       <div className={styles.foodUpdateContainer}>
@@ -155,8 +151,8 @@ const FoodUpdate = () => {
             </span>
           </p>
           <DietaryInfoUpdate
-            updateFoodRequest={updateFoodRequest}
-            setUpdateFoodRequest={setUpdateFoodRequest}
+            editFoodRequest={updateFoodRequest}
+            setEditFoodRequest={setUpdateFoodRequest}
           />
         </div>
         <div className={styles.buttonsContainer}>

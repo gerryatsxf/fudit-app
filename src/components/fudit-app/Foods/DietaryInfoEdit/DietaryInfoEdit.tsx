@@ -1,13 +1,12 @@
 import React from "react";
-import styles from "./DietaryInfoUpdate.module.scss";
+import styles from "./DietaryInfoEdit.module.scss";
 
 // @ts-ignore
-const DietaryInfoUpdate = ({ updateFoodRequest, setUpdateFoodRequest }) => {
-
+const DietaryInfoEdit = ({ editFoodRequest, setEditFoodRequest }) => {
   const handleFoodDietaryInfoFieldChange = (field: string, value: number) => {
-    const request = { ...updateFoodRequest };
+    const request = { ...editFoodRequest };
     request[field] = value;
-    setUpdateFoodRequest(request);
+    setEditFoodRequest(request);
   };
   const units = {
     kcal: "kcal",
@@ -35,37 +34,37 @@ const DietaryInfoUpdate = ({ updateFoodRequest, setUpdateFoodRequest }) => {
     );
   };
   return (
-    <table className={styles.dietaryInfoUpdateTable}>
+    <table className={styles.dietaryInfoEditTable}>
       <tbody>
-        {dietaryInfoField(updateFoodRequest.kcalPerKg, "kcalPerKg", units.kcal)}
+        {dietaryInfoField(editFoodRequest.kcalPerKg, "kcalPerKg", units.kcal)}
         {dietaryInfoField(
-          updateFoodRequest.proteinsPerKg,
+          editFoodRequest.proteinsPerKg,
           "proteinsPerKg",
           units.proteins
         )}
         {dietaryInfoField(
-          updateFoodRequest.carbohydratesPerKg,
+          editFoodRequest.carbohydratesPerKg,
           "carbohydratesPerKg",
           units.carbohydrates
         )}
         {dietaryInfoField(
-          updateFoodRequest.lipidsPerKg,
+          editFoodRequest.lipidsPerKg,
           "lipidsPerKg",
           units.lipids
         )}
-        {dietaryInfoField(updateFoodRequest.kcalPerLt, "kcalPerLt", units.kcal)}
+        {dietaryInfoField(editFoodRequest.kcalPerLt, "kcalPerLt", units.kcal)}
         {dietaryInfoField(
-          updateFoodRequest.proteinsPerLt,
+          editFoodRequest.proteinsPerLt,
           "proteinsPerLt",
           units.proteins
         )}
         {dietaryInfoField(
-          updateFoodRequest.carbohydratesPerLt,
+          editFoodRequest.carbohydratesPerLt,
           "carbohydratesPerLt",
           units.carbohydrates
         )}
         {dietaryInfoField(
-          updateFoodRequest.lipidsPerLt,
+          editFoodRequest.lipidsPerLt,
           "lipidsPerLt",
           units.lipids
         )}
@@ -74,4 +73,4 @@ const DietaryInfoUpdate = ({ updateFoodRequest, setUpdateFoodRequest }) => {
   );
 };
 
-export default DietaryInfoUpdate;
+export default DietaryInfoEdit;

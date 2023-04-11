@@ -12,6 +12,7 @@ import Meals from "../../fudit-app/Meals/Meals";
 import Settings from "../../fudit-app/Settings/Settings";
 import FoodDetail from "../../fudit-app/Foods/FoodDetail/FoodDetail";
 import FoodUpdate from "../../fudit-app/Foods/FoodUpdate/FoodUpdate";
+import FoodCreate from "../../fudit-app/Foods/FoodCreate/FoodCreate";
 
 const DEFAULT_NAVIGATION_MAP = {
   "/app/dietary-plans": false,
@@ -77,6 +78,7 @@ const RootContainer = (props: any) => {
                         />
                         <Route path="meals" element={<Meals />} />
                         <Route path="foods" element={<Foods />}>
+                          <Route path="create" element={<FoodCreate />} />
                           <Route path=":foodId" element={<FoodDetail />} />
                           <Route
                             path=":foodId/update"
