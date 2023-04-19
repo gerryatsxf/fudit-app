@@ -70,6 +70,16 @@ function FuditApp() {
             <li>
               <button
                 className={`nav-button ${
+                  navigationMap["/app/recipes"] ? styles.navButtonActive : ""
+                }`}
+                onClick={() => navigate("/app/recipes")}
+              >
+                Recipes
+              </button>
+            </li>
+            <li>
+              <button
+                className={`nav-button ${
                   navigationMap["/app/foods"] ? styles.navButtonActive : ""
                 }`}
                 onClick={() => navigate("/app/foods")}

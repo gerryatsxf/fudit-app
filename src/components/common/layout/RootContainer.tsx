@@ -8,6 +8,10 @@ import Header from "./Header";
 import DietaryPlans from "../../fudit-app/DietaryPlans/DietaryPlans";
 import MyAccount from "../../fudit-app/MyAccount/MyAccount";
 import Foods from "../../fudit-app/Foods/Foods";
+import Recipes from "../../fudit-app/Recipes/Recipes";
+import RecipeDetail from "../../fudit-app/Recipes/RecipeDetail/RecipeDetail";
+import RecipeUpdate from "../../fudit-app/Recipes/RecipeUpdate/RecipeUpdate";
+import RecipeCreate from "../../fudit-app/Recipes/RecipeCreate/RecipeCreate";
 import Meals from "../../fudit-app/Meals/Meals";
 import Settings from "../../fudit-app/Settings/Settings";
 import FoodDetail from "../../fudit-app/Foods/FoodDetail/FoodDetail";
@@ -18,6 +22,7 @@ const DEFAULT_NAVIGATION_MAP = {
   "/app/dietary-plans": false,
   "/app/meals": false,
   "/app/foods": false,
+  "/app/recipes": false,
   "/app/settings": false,
 };
 export const NavigationContext = createContext({
@@ -83,6 +88,14 @@ const RootContainer = (props: any) => {
                           <Route
                             path=":foodId/update"
                             element={<FoodUpdate />}
+                          />
+                        </Route>
+                        <Route path="recipes" element={<Recipes />}>
+                          <Route path="create" element={<RecipeCreate />} />
+                          <Route path=":recipeId" element={<RecipeDetail />} />
+                          <Route
+                            path=":recipeId/update"
+                            element={<RecipeUpdate />}
                           />
                         </Route>
                         <Route path="settings" element={<Settings />} />

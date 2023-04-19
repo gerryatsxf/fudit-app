@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./FoodList.module.scss";
 import FoodListItem from "../FoodListItem/FoodListItem";
-// import { foodsContext } from "../Foods";
+// import { foodsContext } from "../Recipes";
 
 type FoodListProps = {
   foods: any[];

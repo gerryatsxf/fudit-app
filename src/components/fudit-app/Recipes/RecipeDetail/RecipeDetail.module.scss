@@ -1,0 +1,57 @@
+.closeButton {
+  //background-color: #f00;
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.editButton {
+  //background-color: #f00;
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.deleteButton {
+  //background-color: #f00;
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.recipeDetailsContainer {
+  border: 1px solid white;
+  padding: 10px;
+  margin-top: 15px;
+  background-color: #164a6e;
+
+  //border: 1px solid  #f5f5f5;
+  border-radius: 5px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.descriptionLabel,
+.priceLabel {
+  font-weight: bold;
+}
+
+.infoContainer {
+  //display: flex;
+  //justify-content: space-between;
+  //align-items: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
