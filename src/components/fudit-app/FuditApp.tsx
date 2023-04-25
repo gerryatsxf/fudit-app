@@ -8,10 +8,13 @@ import {
   UserContext,
 } from "../common/layout/RootContainer";
 import { Outlet } from "react-router-dom";
+import { BrowserAppContext } from "../../App";
 
 function FuditApp() {
   const navigationCtx = React.useContext(NavigationContext);
   const navigationMap = navigationCtx.navigationMap;
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
   const setNavigationMap = navigationCtx.setNavigationMap;
 
   Object.keys(navigationMap).forEach((key: string) => {
@@ -25,7 +28,7 @@ function FuditApp() {
   const isMyAccount = window.location.pathname.includes("/app/my-account");
   useEffect(() => {
     if (userCtx.user === null) {
-      navigate("/");
+      navigate(`/${BASE_PATH}/app/`);
       return;
     }
     setNavigationMap(navigationMap);
@@ -52,7 +55,7 @@ function FuditApp() {
                     ? styles.navButtonActive
                     : ""
                 }`}
-                onClick={() => navigate("/app/dietary-plans")}
+                onClick={() => navigate(`/${BASE_PATH}/app/dietary-plans`)}
               >
                 Dietary Plans
               </button>
@@ -62,7 +65,7 @@ function FuditApp() {
                 className={`nav-button ${
                   navigationMap["/app/meals"] ? styles.navButtonActive : ""
                 }`}
-                onClick={() => navigate("/app/meals")}
+                onClick={() => navigate(`/${BASE_PATH}/app/meals`)}
               >
                 Meals
               </button>
@@ -72,7 +75,7 @@ function FuditApp() {
                 className={`nav-button ${
                   navigationMap["/app/recipes"] ? styles.navButtonActive : ""
                 }`}
-                onClick={() => navigate("/app/recipes")}
+                onClick={() => navigate(`/${BASE_PATH}/app/recipes`)}
               >
                 Recipes
               </button>
@@ -82,7 +85,7 @@ function FuditApp() {
                 className={`nav-button ${
                   navigationMap["/app/foods"] ? styles.navButtonActive : ""
                 }`}
-                onClick={() => navigate("/app/foods")}
+                onClick={() => navigate(`/${BASE_PATH}/app/foods`)}
               >
                 Foods
               </button>
@@ -92,7 +95,7 @@ function FuditApp() {
                 className={`nav-button ${
                   navigationMap["/app/settings"] ? styles.navButtonActive : ""
                 }`}
-                onClick={() => navigate("/app/settings")}
+                onClick={() => navigate(`/${BASE_PATH}/app/settings`)}
               >
                 Settings
               </button>

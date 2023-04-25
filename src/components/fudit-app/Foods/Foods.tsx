@@ -5,6 +5,7 @@ import { UserContext } from "../../common/layout/RootContainer";
 import LoadingIndicator from "../../common/bootstrap/LoadingIndicator";
 import FoodList from "./FoodList/FoodList";
 import { Outlet, useNavigate } from "react-router-dom";
+import { BrowserAppContext } from "../../../App";
 
 export const foodsContext = React.createContext<any>({
   foods: [],
@@ -16,6 +17,8 @@ const Foods = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const userCtx = React.useContext(UserContext);
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
   useEffect(() => {
     const config: ConfigurationParameters = {
       basePath: "http://localhost:3002",
@@ -52,7 +55,7 @@ const Foods = () => {
           <br />
           <button
             className={styles.createButton}
-            onClick={() => navigate("/app/foods/create")}
+            onClick={() => navigate(`/${BASE_PATH}/app/foods/create`)}
           >
             Create
           </button>

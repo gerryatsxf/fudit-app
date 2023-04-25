@@ -3,14 +3,17 @@ import { useNavigate } from "react-router-dom";
 import EmailField from "./EmailField";
 import classes from "./ForgotPassword.module.scss";
 import { AuthContext } from "./UserAuthContainer";
+import { BrowserAppContext } from "../../App";
 
 const ForgotPassword: React.FC<any> = () => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const email = authCtx.email;
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
 
   const onLogin = () => {
-    navigate("/login");
+    navigate(`/${BASE_PATH}/login`);
   };
   function onSubmit(email: string) {
     console.log(email);
