@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/fudit-app/static/css/main.544a41d7.css",
+    "main.js": "/fudit-app/static/js/main.551ec367.js",
+    "static/js/787.93c28abc.chunk.js": "/fudit-app/static/js/787.93c28abc.chunk.js",
+    "index.html": "/fudit-app/index.html",
+    "static/media/user.svg": "/fudit-app/static/media/user.9bce91bd5ccbc99ede4a2c85c734cf83.svg",
+    "main.544a41d7.css.map": "/fudit-app/static/css/main.544a41d7.css.map",
+    "main.551ec367.js.map": "/fudit-app/static/js/main.551ec367.js.map",
+    "787.93c28abc.chunk.js.map": "/fudit-app/static/js/787.93c28abc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.544a41d7.css",
+    "static/js/main.551ec367.js"
+  ]
+}
