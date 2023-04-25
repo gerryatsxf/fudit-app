@@ -1,0 +1,97 @@
+.register {
+  margin: 20px auto;
+  padding: 40px 50px;
+  max-width: 300px;
+  border-radius: 5px;
+  background: steelblue;
+  color: white;
+}
+
+.register input {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 14px 12px;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+.register input[type="text"],
+.register input[type="password"] {
+  border: 3px solid rgb(133, 168, 215);
+  transition: 0.2s;
+  background-color: white;
+  color: grey;
+}
+
+.register input[type="text"] {
+  margin-bottom: 0;
+}
+
+.register input[type="text"]:hover,
+.register input[type="password"]:hover {
+  border-color: lightgray;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.register input[type="submit"] {
+  border: none;
+  background: rgb(133, 168, 215);
+  color: white;
+  font-weight: bold;
+  transition: 0.2s;
+  margin: 20px 0px;
+  text-align: center;
+}
+
+.register input[type="submit"]:hover {
+  background: rgba(133, 169, 215, 0.733);
+}
+
+.register h2 {
+  margin: 20px 0 0;
+  color: white;
+  font-size: 28px;
+}
+
+.register p {
+  margin-bottom: 40px;
+}
+
+.links {
+  display: table;
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 1px solid #c0c0c0;
+  margin-bottom: 10px;
+}
+
+.links a {
+  display: table-cell;
+  padding-top: 10px;
+}
+
+.links a:first-child {
+  text-align: right;
+}
+
+.register h2,
+.register p,
+.register a {
+  text-align: center;
+}
+
+.register a {
+  text-decoration: none;
+  font-size: 0.8em;
+}
+
+.register a:visited {
+  color: inherit;
+}
+
+.register a:hover {
+  text-decoration: underline;
+}

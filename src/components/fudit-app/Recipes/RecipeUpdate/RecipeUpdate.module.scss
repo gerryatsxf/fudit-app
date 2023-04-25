@@ -1,0 +1,93 @@
+.closeButton {
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.editButton {
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.deleteButton {
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.recipeUpdateContainer {
+  border: 1px solid white;
+  padding: 10px;
+  margin-top: 15px;
+  background-color: #164a6e;
+  border-radius: 5px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.descriptionLabel,
+.priceLabel {
+  font-weight: bold;
+}
+
+.infoContainer {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.buttonsContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.recipeNameContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.recipeDescriptionContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+}
+
+.seamlessInput {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  outline: none;
+  padding-left: 5px;
+  width: 100%;
+}
+.recipeUpdateContainer {
+  border: 1px solid white;
+  padding: 10px;
+  margin-top: 15px;
+  background-color: #164a6e;
+  border-radius: 5px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

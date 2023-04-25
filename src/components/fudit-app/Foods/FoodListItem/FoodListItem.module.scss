@@ -1,0 +1,7 @@
+.nameLink {
+  cursor: pointer;
+  &:hover {
+    //color: #e8e8e8;
+    text-decoration: underline;
+  }
+}
