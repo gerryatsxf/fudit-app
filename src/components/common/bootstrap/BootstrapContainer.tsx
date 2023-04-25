@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingIndicator from "./LoadingIndicator";
 import { FuditLoadingContext, UserContext } from "../layout/RootContainer";
 import { Configuration, ConfigurationParameters, UsersApi } from "../../../api";
-import { BrowserAppContext } from "../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../App";
 
 function BootstrapContainer() {
   const navigate = useNavigate();
@@ -11,6 +11,9 @@ function BootstrapContainer() {
   const userCtx = React.useContext(UserContext);
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
 
   useEffect(() => {
     const token = localStorage.getItem("fudit_access_token");
@@ -24,7 +27,7 @@ function BootstrapContainer() {
     }
 
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${token}`,
     };
     const usersApi = new UsersApi(new Configuration(config));

@@ -9,7 +9,7 @@ import { UserContext } from "../../common/layout/RootContainer";
 import LoadingIndicator from "../../common/bootstrap/LoadingIndicator";
 import RecipeList from "./RecipeList/RecipeList";
 import { Outlet, useNavigate } from "react-router-dom";
-import { BrowserAppContext } from "../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../App";
 
 export const recipesContext = React.createContext<any>({
   recipes: [],
@@ -26,11 +26,14 @@ const Recipes = () => {
   const [loading, setLoading] = useState(true);
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
   const userCtx = React.useContext(UserContext);
 
   useEffect(() => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${userCtx.token}`,
     };
     const recipesApi = new RecipesApi(new Configuration(config));

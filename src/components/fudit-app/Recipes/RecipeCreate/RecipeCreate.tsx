@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { recipesContext } from "../Recipes";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
-import { BrowserAppContext } from "../../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../../App";
 const RecipeCreate = () => {
   const navigate = useNavigate();
   const [createRecipeRequest, setCreateRecipeRequest] = React.useState({
@@ -20,6 +20,9 @@ const RecipeCreate = () => {
   const recipesCtx = React.useContext(recipesContext);
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
   const [createRequestLoading, setCreateRequestLoading] = React.useState(false);
   const token = localStorage.getItem("fudit_access_token");
 
@@ -37,7 +40,7 @@ const RecipeCreate = () => {
   };
   const handleSave = () => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${token}`,
     };
     const recipesApi = new RecipesApi(new Configuration(config));

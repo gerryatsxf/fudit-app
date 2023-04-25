@@ -3,7 +3,7 @@ import ForgotPassword from "./ForgotPassword";
 import Login from "./Login";
 import Register from "./Register";
 import { useLocation } from "react-router-dom";
-import { BrowserAppContext } from "../../App";
+import { BrowserAppContext, FuditApiContext } from "../../App";
 
 export const AuthContext = React.createContext({
   email: "",
@@ -39,6 +39,9 @@ const UserAuthContainer: React.FC<any> = () => {
 
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
   const LOGIN = `${BASE_PATH}/login`;
   const REGISTER = `${BASE_PATH}/register`;
   const FORGOT = `${BASE_PATH}/forgot-password`;

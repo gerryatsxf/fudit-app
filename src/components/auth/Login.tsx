@@ -4,7 +4,7 @@ import PasswordField from "./PasswordField";
 import EmailField from "./EmailField";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./UserAuthContainer";
-import { BrowserAppContext } from "../../App";
+import { BrowserAppContext, FuditApiContext } from "../../App";
 
 const Login: React.FC<any> = () => {
   const navigate = useNavigate();
@@ -13,6 +13,9 @@ const Login: React.FC<any> = () => {
   const password = authCtx.password;
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
 
   const onRegister = () => {
     navigate(`/${BASE_PATH}/register`);

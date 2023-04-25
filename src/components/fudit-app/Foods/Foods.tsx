@@ -5,7 +5,7 @@ import { UserContext } from "../../common/layout/RootContainer";
 import LoadingIndicator from "../../common/bootstrap/LoadingIndicator";
 import FoodList from "./FoodList/FoodList";
 import { Outlet, useNavigate } from "react-router-dom";
-import { BrowserAppContext } from "../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../App";
 
 export const foodsContext = React.createContext<any>({
   foods: [],
@@ -19,9 +19,12 @@ const Foods = () => {
   const userCtx = React.useContext(UserContext);
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
   useEffect(() => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${userCtx.token}`,
     };
     const foodsApi = new FoodsApi(new Configuration(config));

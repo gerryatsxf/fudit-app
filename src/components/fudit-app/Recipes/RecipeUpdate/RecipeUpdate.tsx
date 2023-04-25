@@ -9,7 +9,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./RecipeUpdate.module.scss";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
-import { BrowserAppContext } from "../../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../../App";
 // import DietaryInfoUpdate from "../DietaryInfoEdit/DietaryInfoEdit";
 
 const RecipeUpdate = () => {
@@ -20,6 +20,9 @@ const RecipeUpdate = () => {
   const recipesCtx = useContext(recipesContext);
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
   const [updateRequestLoading, setUpdateRequestLoading] = useState(true);
   const [updateRecipeRequest, setUpdateRecipeRequest] = useState({
     name: "",
@@ -29,7 +32,7 @@ const RecipeUpdate = () => {
 
   useEffect(() => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${token}`,
     };
     const recipesApi = new RecipesApi(new Configuration(config));
@@ -65,7 +68,7 @@ const RecipeUpdate = () => {
 
   const handleSave = () => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${token}`,
     };
     const recipesApi = new RecipesApi(new Configuration(config));

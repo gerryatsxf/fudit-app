@@ -1,12 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./FoodListItem.module.scss";
-import { BrowserAppContext } from "../../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../../App";
 // @ts-ignore
 const FoodListItem = ({ food }) => {
   const navigate = useNavigate();
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
 
   const handleClick = () => {
     navigate(`/${BASE_PATH}/app/foods/${food.id}`);

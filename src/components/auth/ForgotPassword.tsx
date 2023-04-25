@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import EmailField from "./EmailField";
 import classes from "./ForgotPassword.module.scss";
 import { AuthContext } from "./UserAuthContainer";
-import { BrowserAppContext } from "../../App";
+import { BrowserAppContext, FuditApiContext } from "../../App";
 
 const ForgotPassword: React.FC<any> = () => {
   const navigate = useNavigate();
@@ -11,6 +11,9 @@ const ForgotPassword: React.FC<any> = () => {
   const email = authCtx.email;
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
 
   const onLogin = () => {
     navigate(`/${BASE_PATH}/login`);

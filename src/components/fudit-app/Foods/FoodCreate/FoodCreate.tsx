@@ -11,7 +11,7 @@ import DietaryInfoEdit from "../DietaryInfoEdit/DietaryInfoEdit";
 import { useNavigate } from "react-router-dom";
 import { foodsContext } from "../Foods";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
-import { BrowserAppContext } from "../../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../../App";
 const FoodCreate = () => {
   const navigate = useNavigate();
   const [createFoodRequest, setCreateFoodRequest] = React.useState({
@@ -29,6 +29,9 @@ const FoodCreate = () => {
   const foodsCtx = React.useContext(foodsContext);
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
 
   const [createRequestLoading, setCreateRequestLoading] = React.useState(false);
   const token = localStorage.getItem("fudit_access_token");
@@ -44,7 +47,7 @@ const FoodCreate = () => {
   };
   const handleSave = () => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${token}`,
     };
     const foodsApi = new FoodsApi(new Configuration(config));

@@ -9,7 +9,7 @@ import {
 import styles from "./FoodDetail.module.scss";
 import { foodsContext } from "../Foods";
 import DietaryInfo from "../DietaryInfo/DietaryInfo";
-import { BrowserAppContext } from "../../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../../App";
 
 const FoodDetail = () => {
   const navigate = useNavigate();
@@ -17,6 +17,9 @@ const FoodDetail = () => {
   const token = localStorage.getItem("fudit_access_token");
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
   const { foodId } = useParams();
   if (!foodId) {
     navigate(`/${BASE_PATH}/app/foods`);
@@ -45,7 +48,7 @@ const FoodDetail = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${token}`,
     };
     const foodsApi = new FoodsApi(new Configuration(config));
@@ -66,7 +69,7 @@ const FoodDetail = () => {
 
   const handleClose = () => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${token}`,
     };
     const foodsApi = new FoodsApi(new Configuration(config));

@@ -13,7 +13,7 @@ import LoadingIndicator from "../common/bootstrap/LoadingIndicator";
 import { AuthContext, RegisterContext } from "./UserAuthContainer";
 import FirstNameField from "./FirstNameField";
 import LastNameField from "./LastNameField";
-import { BrowserAppContext } from "../../App";
+import { BrowserAppContext, FuditApiContext } from "../../App";
 
 const Register: React.FC<any> = () => {
   const navigate = useNavigate();
@@ -23,6 +23,9 @@ const Register: React.FC<any> = () => {
   const registerCtx = useContext(RegisterContext);
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
 
   const firstName = registerCtx.firstName;
   const lastName = registerCtx.lastName;
@@ -54,7 +57,7 @@ const Register: React.FC<any> = () => {
   ) {
     setRegisterRequestLoading(true);
     const config: ConfigurationParameters = {
-      basePath: `http://localhost:3002`,
+      basePath: `${PROTOCOL}://${HOST}`,
     };
     const authApi = new AuthenticationApi(new Configuration(config));
     const requestBody: UserRegistrationDto = {

@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "../FoodUpdate/FoodUpdate.module.scss";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
 import DietaryInfoUpdate from "../DietaryInfoEdit/DietaryInfoEdit";
-import { BrowserAppContext } from "../../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../../App";
 
 const FoodUpdate = () => {
   // Initialize context and states
@@ -21,6 +21,9 @@ const FoodUpdate = () => {
   const [updateRequestLoading, setUpdateRequestLoading] = useState(true);
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
   const [updateFoodRequest, setUpdateFoodRequest] = useState({
     name: "",
     description: "",
@@ -36,7 +39,7 @@ const FoodUpdate = () => {
 
   useEffect(() => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${token}`,
     };
     const foodsApi = new FoodsApi(new Configuration(config));
@@ -81,7 +84,7 @@ const FoodUpdate = () => {
 
   const handleSave = () => {
     const config: ConfigurationParameters = {
-      basePath: "http://localhost:3002",
+      basePath: `${PROTOCOL}://${HOST}`,
       accessToken: `${token}`,
     };
     const foodsApi = new FoodsApi(new Configuration(config));

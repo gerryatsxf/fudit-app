@@ -3,7 +3,7 @@ import classes from "./HeaderUserButton.module.scss";
 import userIcon from "../../../assets/user.svg";
 import { UserContext } from "./RootContainer";
 import { useNavigate } from "react-router-dom";
-import { BrowserAppContext } from "../../../App";
+import { BrowserAppContext, FuditApiContext } from "../../../App";
 
 const HeaderUserButton = (props: any) => {
   const navigate = useNavigate();
@@ -11,6 +11,9 @@ const HeaderUserButton = (props: any) => {
   const user = userCtx.user ? userCtx.user : { firstName: "", lastName: "" };
   const browserAppCtx = React.useContext(BrowserAppContext);
   const BASE_PATH = browserAppCtx.basePath;
+  const fuditApiCtx = React.useContext(FuditApiContext);
+  const PROTOCOL = fuditApiCtx.protocol;
+  const HOST = fuditApiCtx.host;
   return (
     <button
       className={classes.button}
