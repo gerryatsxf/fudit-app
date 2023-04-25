@@ -1,6 +1,7 @@
 {
   "name": "fudit",
   "version": "0.1.0",
+  "homepage": "https://gerryatsxf.github.io/fudit-app",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -24,6 +25,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -53,6 +56,7 @@
     "@openapitools/openapi-generator-cli": "^2.5.2",
     "@types/js-cookie": "^3.0.2",
     "@types/styled-components": "^5.1.26",
-    "prettier": "2.8.7"
+    "prettier": "2.8.7",
+    "gh-pages": "^5.0.0"
   }
 }
