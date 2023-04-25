@@ -13,7 +13,7 @@ export const FuditApiContext = React.createContext<any>({
   setProtocol: () => {},
   host: "localhost:3002",
   setHost: () => {},
-})
+});
 function App() {
   const [browserApp, setBrowserApp] = React.useState(false);
   const [basePath, setBasePath] = React.useState("fudit-app");
@@ -26,7 +26,7 @@ function App() {
           browserApp,
           setBrowserApp,
           basePath,
-          setBasePath
+          setBasePath,
         }}
       >
         <FuditApiContext.Provider
@@ -34,11 +34,10 @@ function App() {
             protocol,
             setProtocol,
             host,
-            setHost
+            setHost,
           }}
         >
-
-        <RootContainer></RootContainer>
+          <RootContainer></RootContainer>
         </FuditApiContext.Provider>
       </BrowserAppContext.Provider>
     </Fragment>
