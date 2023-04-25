@@ -9,6 +9,7 @@ import { UserContext } from "../../common/layout/RootContainer";
 import LoadingIndicator from "../../common/bootstrap/LoadingIndicator";
 import RecipeList from "./RecipeList/RecipeList";
 import { Outlet, useNavigate } from "react-router-dom";
+import { BrowserAppContext } from "../../../App";
 
 export const recipesContext = React.createContext<any>({
   recipes: [],
@@ -23,6 +24,8 @@ const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [portions, setPortions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
   const userCtx = React.useContext(UserContext);
 
   useEffect(() => {
@@ -64,7 +67,7 @@ const Recipes = () => {
             <br />
             <button
               className={styles.createButton}
-              onClick={() => navigate("/app/recipes/create")}
+              onClick={() => navigate(`/${BASE_PATH}/app/recipes/create`)}
             >
               Create
             </button>

@@ -9,15 +9,17 @@ import {
 import styles from "./FoodDetail.module.scss";
 import { foodsContext } from "../Foods";
 import DietaryInfo from "../DietaryInfo/DietaryInfo";
+import { BrowserAppContext } from "../../../../App";
 
 const FoodDetail = () => {
   const navigate = useNavigate();
   const foodsCtx = React.useContext(foodsContext);
   const token = localStorage.getItem("fudit_access_token");
-
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
   const { foodId } = useParams();
   if (!foodId) {
-    navigate("/app/foods");
+    navigate(`/${BASE_PATH}/app/foods`);
     return null;
   }
 
@@ -73,11 +75,11 @@ const FoodDetail = () => {
       console.log("foods: ", foods);
       foodsCtx.setFoods(foods);
     });
-    navigate("/app/foods");
+    navigate(`/${BASE_PATH}/app/foods`);
   };
   const handleDelete = () => {};
   const handleEdit = () => {
-    navigate(`/app/foods/${foodId}/update`);
+    navigate(`/${BASE_PATH}/app/foods/${foodId}/update`);
   };
 
   if (loading) {

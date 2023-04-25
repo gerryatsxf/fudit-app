@@ -51,7 +51,7 @@ const RootContainer = (props: any) => {
   const [authView, setAuthView] = useState("");
 
   const [navigationMap, setNavigationMap] = useState(DEFAULT_NAVIGATION_MAP);
-
+  const BASE_PATH = "fudit-app";
   // @ts-ignore
   // @ts-ignore
   return (
@@ -67,38 +67,50 @@ const RootContainer = (props: any) => {
                 <div className={classes.rootContainer}>
                   <Fragment>
                     <Routes>
-                      <Route path="" element={<BootstrapContainer />} />
-                      <Route path="login" element={<UserAuthContainer />} />
-                      <Route path="register" element={<UserAuthContainer />} />
                       <Route
-                        path="forgot-password"
+                        path={`${BASE_PATH}`}
+                        element={<BootstrapContainer />}
+                      />
+                      <Route
+                        path={`${BASE_PATH}/login`}
+                        element={<UserAuthContainer />}
+                      />
+                      <Route
+                        path={`${BASE_PATH}/register`}
+                        element={<UserAuthContainer />}
+                      />
+                      <Route
+                        path={`${BASE_PATH}/forgot-password`}
                         element={<UserAuthContainer />}
                       />
 
-                      <Route path="app" element={<FuditApp />}>
-                        <Route path="my-account" element={<MyAccount />} />
+                      <Route path={`${BASE_PATH}/app`} element={<FuditApp />}>
+                        <Route path={`my-account`} element={<MyAccount />} />
                         <Route
-                          path="dietary-plans"
+                          path={`dietary-plans`}
                           element={<DietaryPlans />}
                         />
-                        <Route path="meals" element={<Meals />} />
-                        <Route path="foods" element={<Foods />}>
-                          <Route path="create" element={<FoodCreate />} />
-                          <Route path=":foodId" element={<FoodDetail />} />
+                        <Route path={`meals`} element={<Meals />} />
+                        <Route path={`foods`} element={<Foods />}>
+                          <Route path={`create`} element={<FoodCreate />} />
+                          <Route path={`:foodId`} element={<FoodDetail />} />
                           <Route
-                            path=":foodId/update"
+                            path={`:foodId/update`}
                             element={<FoodUpdate />}
                           />
                         </Route>
-                        <Route path="recipes" element={<Recipes />}>
-                          <Route path="create" element={<RecipeCreate />} />
-                          <Route path=":recipeId" element={<RecipeDetail />} />
+                        <Route path={`recipes`} element={<Recipes />}>
+                          <Route path={`create`} element={<RecipeCreate />} />
                           <Route
-                            path=":recipeId/update"
+                            path={`:recipeId`}
+                            element={<RecipeDetail />}
+                          />
+                          <Route
+                            path={`:recipeId/update`}
                             element={<RecipeUpdate />}
                           />
                         </Route>
-                        <Route path="settings" element={<Settings />} />
+                        <Route path={`settings`} element={<Settings />} />
                       </Route>
                     </Routes>
                   </Fragment>

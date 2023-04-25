@@ -4,19 +4,22 @@ import PasswordField from "./PasswordField";
 import EmailField from "./EmailField";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./UserAuthContainer";
+import { BrowserAppContext } from "../../App";
 
 const Login: React.FC<any> = () => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const email = authCtx.email;
   const password = authCtx.password;
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
 
   const onRegister = () => {
-    navigate("/register");
+    navigate(`/${BASE_PATH}/register`);
   };
 
   const onForgot = () => {
-    navigate("/forgot-password");
+    navigate(`/${BASE_PATH}/forgot-password`);
   };
   function onSubmit(email: string, password: string) {
     console.log(email, password);

@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { recipesContext } from "../Recipes";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
+import { BrowserAppContext } from "../../../../App";
 const RecipeCreate = () => {
   const navigate = useNavigate();
   const [createRecipeRequest, setCreateRecipeRequest] = React.useState({
@@ -17,7 +18,8 @@ const RecipeCreate = () => {
     portions: [],
   } as CreateRecipeRequestDto);
   const recipesCtx = React.useContext(recipesContext);
-
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
   const [createRequestLoading, setCreateRequestLoading] = React.useState(false);
   const token = localStorage.getItem("fudit_access_token");
 
@@ -48,7 +50,7 @@ const RecipeCreate = () => {
           console.log("recipes: ", recipes);
           recipesCtx.setRecipes(recipes);
         });
-        navigate(`/app/recipes/${response.data.data.recipe.id}`);
+        navigate(`/${BASE_PATH}/app/recipes/${response.data.data.recipe.id}`);
       })
       .catch((error: any) => {
         console.error("There was an error while updating the recipe.", error);
@@ -59,7 +61,7 @@ const RecipeCreate = () => {
   };
 
   const handleCancel = () => {
-    navigate(`/app/recipes`);
+    navigate(`/${BASE_PATH}/app/recipes`);
   };
 
   if (createRequestLoading) {

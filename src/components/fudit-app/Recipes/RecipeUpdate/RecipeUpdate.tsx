@@ -9,6 +9,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./RecipeUpdate.module.scss";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
+import { BrowserAppContext } from "../../../../App";
 // import DietaryInfoUpdate from "../DietaryInfoEdit/DietaryInfoEdit";
 
 const RecipeUpdate = () => {
@@ -17,6 +18,8 @@ const RecipeUpdate = () => {
   const navigate = useNavigate();
   const { recipeId } = useParams();
   const recipesCtx = useContext(recipesContext);
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
   const [updateRequestLoading, setUpdateRequestLoading] = useState(true);
   const [updateRecipeRequest, setUpdateRecipeRequest] = useState({
     name: "",
@@ -33,7 +36,7 @@ const RecipeUpdate = () => {
 
     // Handle non-existing recipeId
     if (!recipeId) {
-      navigate("/app/recipes");
+      navigate(`/${BASE_PATH}/recipes`);
     } else {
       recipesApi
         .recipesControllerFindOne(recipeId)
@@ -56,7 +59,7 @@ const RecipeUpdate = () => {
 
   // Handle non-existing recipeId
   if (!recipeId) {
-    navigate("/app/recipes");
+    navigate(`/${BASE_PATH}/recipes`);
     return null;
   }
 
@@ -75,7 +78,7 @@ const RecipeUpdate = () => {
           console.log("recipes: ", recipes);
           recipesCtx.setRecipes(recipes);
         });
-        navigate(`/app/recipes/${recipeId}`);
+        navigate(`/${BASE_PATH}/app/recipes/${recipeId}`);
       })
       .catch((error: any) => {
         console.error("There was an error while updating the recipe.", error);
@@ -86,7 +89,7 @@ const RecipeUpdate = () => {
   };
 
   const handleCancel = () => {
-    navigate(`/app/recipes/${recipeId}`);
+    navigate(`/${BASE_PATH}/app/recipes/${recipeId}`);
   };
 
   const handleNameChange = (event: any) => {

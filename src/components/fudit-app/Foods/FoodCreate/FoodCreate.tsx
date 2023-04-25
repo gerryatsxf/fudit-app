@@ -11,6 +11,7 @@ import DietaryInfoEdit from "../DietaryInfoEdit/DietaryInfoEdit";
 import { useNavigate } from "react-router-dom";
 import { foodsContext } from "../Foods";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
+import { BrowserAppContext } from "../../../../App";
 const FoodCreate = () => {
   const navigate = useNavigate();
   const [createFoodRequest, setCreateFoodRequest] = React.useState({
@@ -26,6 +27,8 @@ const FoodCreate = () => {
     proteinsPerLt: 0,
   } as CreateFoodRequestDto);
   const foodsCtx = React.useContext(foodsContext);
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
 
   const [createRequestLoading, setCreateRequestLoading] = React.useState(false);
   const token = localStorage.getItem("fudit_access_token");
@@ -54,7 +57,7 @@ const FoodCreate = () => {
           console.log("foods: ", foods);
           foodsCtx.setFoods(foods);
         });
-        navigate(`/app/foods/${response.data.data.food.id}`);
+        navigate(`/${BASE_PATH}/app/foods/${response.data.data.food.id}`);
       })
       .catch((error: any) => {
         console.error("There was an error while updating the food.", error);
@@ -65,7 +68,7 @@ const FoodCreate = () => {
   };
 
   const handleCancel = () => {
-    navigate(`/app/foods`);
+    navigate(`/${BASE_PATH}/app/foods`);
   };
 
   if (createRequestLoading) {

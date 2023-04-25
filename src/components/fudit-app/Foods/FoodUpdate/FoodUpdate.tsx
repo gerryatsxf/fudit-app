@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "../FoodUpdate/FoodUpdate.module.scss";
 import LoadingIndicator from "../../../common/bootstrap/LoadingIndicator";
 import DietaryInfoUpdate from "../DietaryInfoEdit/DietaryInfoEdit";
+import { BrowserAppContext } from "../../../../App";
 
 const FoodUpdate = () => {
   // Initialize context and states
@@ -18,6 +19,8 @@ const FoodUpdate = () => {
   const { foodId } = useParams();
   const foodsCtx = useContext(foodsContext);
   const [updateRequestLoading, setUpdateRequestLoading] = useState(true);
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
   const [updateFoodRequest, setUpdateFoodRequest] = useState({
     name: "",
     description: "",
@@ -40,7 +43,7 @@ const FoodUpdate = () => {
 
     // Handle non-existing foodId
     if (!foodId) {
-      navigate("/app/foods");
+      navigate(`/${BASE_PATH}/app/foods`);
     } else {
       foodsApi
         .foodsControllerFindOne(foodId)
@@ -72,7 +75,7 @@ const FoodUpdate = () => {
 
   // Handle non-existing foodId
   if (!foodId) {
-    navigate("/app/foods");
+    navigate(`/${BASE_PATH}/app/foods`);
     return null;
   }
 
@@ -91,7 +94,7 @@ const FoodUpdate = () => {
           console.log("foods: ", foods);
           foodsCtx.setFoods(foods);
         });
-        navigate(`/app/foods/${foodId}`);
+        navigate(`/${BASE_PATH}/app/foods/${foodId}`);
       })
       .catch((error: any) => {
         console.error("There was an error while updating the food.", error);
@@ -102,7 +105,7 @@ const FoodUpdate = () => {
   };
 
   const handleCancel = () => {
-    navigate(`/app/foods/${foodId}`);
+    navigate(`/${BASE_PATH}/app/foods/${foodId}`);
   };
 
   const handleNameChange = (event: any) => {

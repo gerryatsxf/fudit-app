@@ -13,6 +13,7 @@ import LoadingIndicator from "../common/bootstrap/LoadingIndicator";
 import { AuthContext, RegisterContext } from "./UserAuthContainer";
 import FirstNameField from "./FirstNameField";
 import LastNameField from "./LastNameField";
+import { BrowserAppContext } from "../../App";
 
 const Register: React.FC<any> = () => {
   const navigate = useNavigate();
@@ -20,13 +21,15 @@ const Register: React.FC<any> = () => {
     React.useState(false);
   const authCtx = useContext(AuthContext);
   const registerCtx = useContext(RegisterContext);
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
 
   const firstName = registerCtx.firstName;
   const lastName = registerCtx.lastName;
   const email = authCtx.email;
   const password = authCtx.password;
   const onLogin = () => {
-    navigate("/login");
+    navigate(`/${BASE_PATH}/login`);
   };
   function onSubmit(
     firstName: string,
@@ -69,7 +72,7 @@ const Register: React.FC<any> = () => {
         //@ts-ignore
         localStorage.setItem("fudit_access_token", response.data.access_token);
         console.log("Access token saved to local storage.");
-        navigate("/");
+        navigate(`/${BASE_PATH}/`);
       })
       .catch((error) => {
         console.error(

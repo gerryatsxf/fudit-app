@@ -3,9 +3,12 @@ import classes from "./Header.module.scss";
 import HeaderUserButton from "./HeaderUserButton";
 import { UserContext } from "./RootContainer";
 import { useNavigate } from "react-router-dom";
+import { BrowserAppContext } from "../../../App";
 const Header = () => {
   const userCtx = React.useContext(UserContext);
   const navigate = useNavigate();
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
   const loggedInBadge = (user: any | null) => {
     if (user !== null) {
       return <HeaderUserButton></HeaderUserButton>;
@@ -17,7 +20,7 @@ const Header = () => {
         <span
           className={classes.headerModule}
           onClick={() => {
-            navigate("/app");
+            navigate(`/${BASE_PATH}/app`);
           }}
         >
           <span className={classes.headerModuleId}>id</span>entity

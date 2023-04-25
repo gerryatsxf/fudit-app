@@ -3,10 +3,7 @@ import ForgotPassword from "./ForgotPassword";
 import Login from "./Login";
 import Register from "./Register";
 import { useLocation } from "react-router-dom";
-
-const LOGIN = "login";
-const REGISTER = "register";
-const FORGOT = "forgot-password";
+import { BrowserAppContext } from "../../App";
 
 export const AuthContext = React.createContext({
   email: "",
@@ -39,6 +36,12 @@ export const RegisterContext = React.createContext({
 const UserAuthContainer: React.FC<any> = () => {
   const location = useLocation();
   const authViewCase = location.pathname.substring(1);
+
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
+  const LOGIN = `${BASE_PATH}/login`;
+  const REGISTER = `${BASE_PATH}/register`;
+  const FORGOT = `${BASE_PATH}/forgot-password`;
 
   const isValidEmail = (email: string) =>
     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);

@@ -9,15 +9,17 @@ import {
 import styles from "./RecipeDetail.module.scss";
 import { recipesContext } from "../Recipes";
 import RecipePortionsList from "../RecipePortionsList/RecipePortionsList";
+import { BrowserAppContext } from "../../../../App";
 
 const RecipeDetail = () => {
   const navigate = useNavigate();
   const recipesCtx = React.useContext(recipesContext);
   const token = localStorage.getItem("fudit_access_token");
-
+  const browserAppCtx = React.useContext(BrowserAppContext);
+  const BASE_PATH = browserAppCtx.basePath;
   const { recipeId } = useParams();
   if (!recipeId) {
-    navigate("/app/recipes");
+    navigate(`/${BASE_PATH}/app/recipes`);
     return null;
   }
 
@@ -73,11 +75,11 @@ const RecipeDetail = () => {
       console.log("recipes: ", recipes);
       recipesCtx.setRecipes(recipes);
     });
-    navigate("/app/recipes");
+    navigate(`/${BASE_PATH}/app/recipes`);
   };
   const handleDelete = () => {};
   const handleEdit = () => {
-    navigate(`/app/recipes/${recipeId}/update`);
+    navigate(`/${BASE_PATH}/app/recipes/${recipeId}/update`);
   };
 
   if (loading) {
